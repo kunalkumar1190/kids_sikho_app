@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Circle",
+    "symbol": "🔴"
+  },
+  {
+    "name": "Square",
+    "symbol": "🟦"
+  },
+  {
+    "name": "Triangle",
+    "symbol": "🔺"
+  },
+  {
+    "name": "Rectangle",
+    "symbol": "🟩"
+  },
+  {
+    "name": "Star",
+    "symbol": "⭐"
+  },
+  {
+    "name": "Heart",
+    "symbol": "❤️"
+  },
+  {
+    "name": "Diamond",
+    "symbol": "♦️"
+  },
+  {
+    "name": "Oval",
+    "symbol": "🪺"
+  },
+  {
+    "name": "Pentagon",
+    "symbol": "⬟"
+  },
+  {
+    "name": "Hexagon",
+    "symbol": "⬡"
+  }
+]

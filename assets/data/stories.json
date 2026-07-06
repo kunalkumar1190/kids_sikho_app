@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title_en": "The Thirsty Crow",
+    "title_hi": "प्यासा कौवा",
+    "content_en": "Once upon a time, there was a very thirsty crow. He flew everywhere looking for water. Finally, he saw a pitcher with a little water in it. The crow dropped stones into the pitcher until the water came up. He drank the water and flew away happily.",
+    "content_hi": "एक बार की बात है, एक कौवा बहुत प्यासा था। वह पानी की तलाश में हर जगह उड़ा। अंत में, उसे एक घड़ा मिला जिसमें थोड़ा पानी था। कौवे ने घड़े में कंकड़ डाले जब तक कि पानी ऊपर नहीं आ गया। उसने पानी पिया और खुशी से उड़ गया।",
+    "imageUrl": "https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": 2,
+    "title_en": "The Fox and the Grapes",
+    "title_hi": "लोमड़ी और अंगूर",
+    "content_en": "A hungry fox saw some beautiful grapes hanging from a vine. He jumped high, but couldn't reach them. He tried again and again. Finally, he gave up and said, 'Those grapes are probably sour anyway.'",
+    "content_hi": "एक भूखी लोमड़ी ने बेल से लटकते हुए कुछ सुंदर अंगूर देखे। वह ऊंची कूदी, लेकिन उन तक नहीं पहुंच सकी। उसने बार-बार कोशिश की। अंत में, उसने हार मान ली और कहा, 'वे अंगूर वैसे भी खट्टे होंगे।'",
+    "imageUrl": "https://images.unsplash.com/photo-1516934024742-b461fba47600?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": 3,
+    "title_en": "The Hare and the Tortoise",
+    "title_hi": "खरगोश और कछुआ",
+    "content_en": "A hare was very proud of his speed and made fun of a slow tortoise. They decided to have a race. The hare ran fast and went to sleep under a tree. The tortoise walked slowly but steadily and won the race.",
+    "content_hi": "एक खरगोश को अपनी गति पर बहुत गर्व था और उसने एक धीमे कछुए का मज़ाक उड़ाया। उन्होंने एक दौड़ लगाने का फैसला किया। खरगोश तेज दौड़ा और एक पेड़ के नीचे सो गया। कछुआ धीरे-धीरे लेकिन लगातार चलता रहा और दौड़ जीत गया।",
+    "imageUrl": "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    "id": 4,
+    "title_en": "The Lion and the Mouse",
+    "title_hi": "शेर और चूहा",
+    "content_en": "A mouse ran over a sleeping lion, waking him up. The lion caught the mouse but let him go. Later, hunters caught the lion in a net. The mouse heard the lion roar and chewed through the net, saving his life.",
+    "content_hi": "एक चूहा सोए हुए शेर के ऊपर दौड़ा, जिससे वह जाग गया। शेर ने चूहे को पकड़ लिया लेकिन उसे जाने दिया। बाद में, शिकारियों ने शेर को जाल में पकड़ लिया। चूहे ने शेर की दहाड़ सुनी और जाल को चबाकर उसकी जान बचाई।",
+    "imageUrl": "https://images.unsplash.com/photo-1517825738774-7de9363ef735?q=80&w=400&auto=format&fit=crop"
+  }
+]
