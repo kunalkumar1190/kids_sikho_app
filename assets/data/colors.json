@@ -1,0 +1,10 @@
+[
+  {"name": "Red", "color": "0xFFF44336"},
+  {"name": "Blue", "color": "0xFF2196F3"},
+  {"name": "Green", "color": "0xFF4CAF50"},
+  {"name": "Yellow", "color": "0xFFFFEB3B"},
+  {"name": "Orange", "color": "0xFFFF9800"},
+  {"name": "Purple", "color": "0xFF9C27B0"},
+  {"name": "Pink", "color": "0xFFE91E63"},
+  {"name": "Brown", "color": "0xFF795548"}
+]

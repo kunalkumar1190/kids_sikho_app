@@ -38,12 +38,20 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Colors",
-      assetImage: Assets.icons.fruits,
       emoji: "🎨",
       lightColor: const Color(0xFFC8E6C9),
       mainColor: const Color(0xFF81C784),
       textColor: const Color(0xFF388E3C),
       path: Routes.colors,
+    ),
+    HomeMenuItem(
+      title: "Fruits",
+      assetImage: Assets.icons.fruits,
+      emoji: "🍎",
+      lightColor: const Color(0xFFC8E6C9),
+      mainColor: const Color(0xFF81C784),
+      textColor: const Color(0xFF388E3C),
+      path: Routes.fruits,
     ),
     HomeMenuItem(
       title: "Animals",

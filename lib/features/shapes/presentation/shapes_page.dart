@@ -26,9 +26,8 @@ class _ShapesPageState extends State<ShapesPage> {
 
   Future<void> _speakShape(String shapeName) async {
     await _audioService.stop();
-    // Spell the shape and then say it (e.g. S Q U A R E. Square)
-    String spelledOut = shapeName.toUpperCase().split('').join(' ');
-    _audioService.speak("$spelledOut, $shapeName");
+    String spelledOut = shapeName.toUpperCase();
+    _audioService.speak(spelledOut);
   }
 
   @override

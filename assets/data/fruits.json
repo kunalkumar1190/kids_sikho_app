@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Apple",
+    "emoji": "🍎",
+    "color": "0xFFF44336"
+  },
+  {
+    "name": "Banana",
+    "emoji": "🍌",
+    "color": "0xFFFFEB3B"
+  },
+  {
+    "name": "Mango",
+    "emoji": "🥭",
+    "color": "0xFFFFC107"
+  },
+  {
+    "name": "Orange",
+    "emoji": "🍊",
+    "color": "0xFFFF9800"
+  },
+  {
+    "name": "Grapes",
+    "emoji": "🍇",
+    "color": "0xFF9C27B0"
+  },
+  {
+    "name": "Watermelon",
+    "emoji": "🍉",
+    "color": "0xFFE91E63"
+  },
+  {
+    "name": "Guava",
+    "emoji": "🍏",
+    "color": "0xFF8BC34A"
+  },
+  {
+    "name": "Coconut",
+    "emoji": "🥥",
+    "color": "0xFF8D6E63"
+  },
+  {
+    "name": "Pineapple",
+    "emoji": "🍍",
+    "color": "0xFFFFC107"
+  },
+  {
+    "name": "Pear",
+    "emoji": "🍐",
+    "color": "0xFF8BC34A"
+  },
+  {
+    "name": "Strawberry",
+    "emoji": "🍓",
+    "color": "0xFFE53935"
+  },
+  {
+    "name": "Lemon",
+    "emoji": "🍋",
+    "color": "0xFFFFEB3B"
+  }
+]

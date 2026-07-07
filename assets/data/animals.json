@@ -1,0 +1,277 @@
+[
+  {
+    "name": "Dog",
+    "emoji": "🐶",
+    "color": "0xFF795548"
+  },
+  {
+    "name": "Cat",
+    "emoji": "🐱",
+    "color": "0xFFFF9800"
+  },
+  {
+    "name": "Lion",
+    "emoji": "🦁",
+    "color": "0xFFFFC107"
+  },
+  {
+    "name": "Tiger",
+    "emoji": "🐯",
+    "color": "0xFFFF5722"
+  },
+  {
+    "name": "Elephant",
+    "emoji": "🐘",
+    "color": "0xFF607D8B"
+  },
+  {
+    "name": "Monkey",
+    "emoji": "🐒",
+    "color": "0xFF795548"
+  },
+  {
+    "name": "Bear",
+    "emoji": "🐻",
+    "color": "0xFF6D4C41"
+  },
+  {
+    "name": "Panda",
+    "emoji": "🐼",
+    "color": "0xFF424242"
+  },
+  {
+    "name": "Koala",
+    "emoji": "🐨",
+    "color": "0xFF90A4AE"
+  },
+  {
+    "name": "Fox",
+    "emoji": "🦊",
+    "color": "0xFFFF7043"
+  },
+  {
+    "name": "Wolf",
+    "emoji": "🐺",
+    "color": "0xFF9E9E9E"
+  },
+  {
+    "name": "Rabbit",
+    "emoji": "🐰",
+    "color": "0xFFF8BBD0"
+  },
+  {
+    "name": "Mouse",
+    "emoji": "🐭",
+    "color": "0xFFBDBDBD"
+  },
+  {
+    "name": "Hamster",
+    "emoji": "🐹",
+    "color": "0xFFFFCC80"
+  },
+  {
+    "name": "Cow",
+    "emoji": "🐮",
+    "color": "0xFF8D6E63"
+  },
+  {
+    "name": "Buffalo",
+    "emoji": "🐃",
+    "color": "0xFF5D4037"
+  },
+  {
+    "name": "Ox",
+    "emoji": "🐂",
+    "color": "0xFF6D4C41"
+  },
+  {
+    "name": "Pig",
+    "emoji": "🐷",
+    "color": "0xFFF48FB1"
+  },
+  {
+    "name": "Boar",
+    "emoji": "🐗",
+    "color": "0xFF5D4037"
+  },
+  {
+    "name": "Horse",
+    "emoji": "🐴",
+    "color": "0xFFA1887F"
+  },
+  {
+    "name": "Zebra",
+    "emoji": "🦓",
+    "color": "0xFF424242"
+  },
+  {
+    "name": "Giraffe",
+    "emoji": "🦒",
+    "color": "0xFFFFB74D"
+  },
+  {
+    "name": "Camel",
+    "emoji": "🐪",
+    "color": "0xFFD7A86E"
+  },
+  {
+    "name": "Llama",
+    "emoji": "🦙",
+    "color": "0xFFD7CCC8"
+  },
+  {
+    "name": "Goat",
+    "emoji": "🐐",
+    "color": "0xFFA1887F"
+  },
+  {
+    "name": "Sheep",
+    "emoji": "🐑",
+    "color": "0xFFF5F5F5"
+  },
+  {
+    "name": "Deer",
+    "emoji": "🦌",
+    "color": "0xFF8D6E63"
+  },
+  {
+    "name": "Kangaroo",
+    "emoji": "🦘",
+    "color": "0xFF8D6E63"
+  },
+  {
+    "name": "Sloth",
+    "emoji": "🦥",
+    "color": "0xFFA1887F"
+  },
+  {
+    "name": "Hippopotamus",
+    "emoji": "🦛",
+    "color": "0xFF78909C"
+  },
+  {
+    "name": "Rhinoceros",
+    "emoji": "🦏",
+    "color": "0xFF757575"
+  },
+  {
+    "name": "Crocodile",
+    "emoji": "🐊",
+    "color": "0xFF4CAF50"
+  },
+  {
+    "name": "Turtle",
+    "emoji": "🐢",
+    "color": "0xFF66BB6A"
+  },
+  {
+    "name": "Snake",
+    "emoji": "🐍",
+    "color": "0xFF4CAF50"
+  },
+  {
+    "name": "Lizard",
+    "emoji": "🦎",
+    "color": "0xFF81C784"
+  },
+  {
+    "name": "Frog",
+    "emoji": "🐸",
+    "color": "0xFF4CAF50"
+  },
+  {
+    "name": "Penguin",
+    "emoji": "🐧",
+    "color": "0xFF546E7A"
+  },
+  {
+    "name": "Chicken",
+    "emoji": "🐔",
+    "color": "0xFFFFEB3B"
+  },
+  {
+    "name": "Rooster",
+    "emoji": "🐓",
+    "color": "0xFFE53935"
+  },
+  {
+    "name": "Duck",
+    "emoji": "🦆",
+    "color": "0xFFFFC107"
+  },
+  {
+    "name": "Swan",
+    "emoji": "🦢",
+    "color": "0xFFECEFF1"
+  },
+  {
+    "name": "Owl",
+    "emoji": "🦉",
+    "color": "0xFF6D4C41"
+  },
+  {
+    "name": "Eagle",
+    "emoji": "🦅",
+    "color": "0xFF8D6E63"
+  },
+  {
+    "name": "Parrot",
+    "emoji": "🦜",
+    "color": "0xFF4CAF50"
+  },
+  {
+    "name": "Peacock",
+    "emoji": "🦚",
+    "color": "0xFF26A69A"
+  },
+  {
+    "name": "Flamingo",
+    "emoji": "🦩",
+    "color": "0xFFF06292"
+  },
+  {
+    "name": "Fish",
+    "emoji": "🐟",
+    "color": "0xFF29B6F6"
+  },
+  {
+    "name": "Dolphin",
+    "emoji": "🐬",
+    "color": "0xFF4FC3F7"
+  },
+  {
+    "name": "Whale",
+    "emoji": "🐋",
+    "color": "0xFF42A5F5"
+  },
+  {
+    "name": "Shark",
+    "emoji": "🦈",
+    "color": "0xFF607D8B"
+  },
+  {
+    "name": "Octopus",
+    "emoji": "🐙",
+    "color": "0xFFAB47BC"
+  },
+  {
+    "name": "Butterfly",
+    "emoji": "🦋",
+    "color": "0xFF7E57C2"
+  },
+  {
+    "name": "Bee",
+    "emoji": "🐝",
+    "color": "0xFFFFC107"
+  },
+  {
+    "name": "Ant",
+    "emoji": "🐜",
+    "color": "0xFF5D4037"
+  },
+  {
+    "name": "Spider",
+    "emoji": "🕷️",
+    "color": "0xFF424242"
+  }
+]
