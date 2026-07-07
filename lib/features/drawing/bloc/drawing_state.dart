@@ -1,6 +1,6 @@
 part of 'drawing_bloc.dart';
 
-class DrawingState extends Equatable {
+class DrawingState {
   final List<DrawingPoint?> points;
   final List<List<DrawingPoint?>> undoHistory;
   final Color selectedColor;
@@ -26,7 +26,4 @@ class DrawingState extends Equatable {
       strokeWidth: strokeWidth ?? this.strokeWidth,
     );
   }
-
-  @override
-  List<Object?> get props => [points, undoHistory, selectedColor, strokeWidth];
 }

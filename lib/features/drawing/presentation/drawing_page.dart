@@ -1,32 +1,121 @@
 import 'dart:ui' as ui;
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kids_sikho_app/core/widgets/question_lock_dialog.dart';
 import '../bloc/drawing_bloc.dart';
 import '../data/models/drawing_point.dart';
 
-class DrawingPage extends StatelessWidget {
+class DrawingPage extends StatefulWidget {
   const DrawingPage({Key? key}) : super(key: key);
+
+  @override
+  State<DrawingPage> createState() => _DrawingPageState();
+}
+
+class _DrawingPageState extends State<DrawingPage> {
+  bool _isLockEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
+    super.dispose();
+  }
+
+  void _toggleLock() async {
+    if (_isLockEnabled) {
+      final unlocked = await showParentLockDialog(context);
+      if (unlocked) {
+        setState(() {
+          _isLockEnabled = false;
+        });
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+            overlays: SystemUiOverlay.values);
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Parent lock disabled.')),
+          );
+        }
+      }
+    } else {
+      setState(() {
+        _isLockEnabled = true;
+      });
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Parent lock enabled.')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DrawingBloc(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Draw & Learn',
-            style: GoogleFonts.nunito(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      child: PopScope(
+        canPop: !_isLockEnabled,
+        onPopInvokedWithResult: (didPop, result) async {
+          if (didPop) return;
+          final unlocked = await showParentLockDialog(context);
+          if (unlocked && context.mounted) {
+            setState(() {
+              _isLockEnabled = false;
+            });
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                overlays: SystemUiOverlay.values);
+            Navigator.of(context).pop();
+          }
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Draw & Learn',
+              style: GoogleFonts.nunito(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
+            backgroundColor: Colors.pinkAccent,
+            centerTitle: true,
+            elevation: 0,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () async {
+                if (!_isLockEnabled) {
+                  Navigator.of(context).pop();
+                } else {
+                  final unlocked = await showParentLockDialog(context);
+                  if (unlocked && context.mounted) {
+                    setState(() {
+                      _isLockEnabled = false;
+                    });
+                    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                        overlays: SystemUiOverlay.values);
+                    Navigator.of(context).pop();
+                  }
+                }
+              },
+            ),
+            actions: [
+              IconButton(
+                icon: Icon(_isLockEnabled ? Icons.lock : Icons.lock_open),
+                onPressed: _toggleLock,
+              ),
+            ],
           ),
-          backgroundColor: Colors.pinkAccent,
-          centerTitle: true,
-          elevation: 0,
+          body: const DrawingCanvas(),
         ),
-        body: const DrawingCanvas(),
       ),
     );
   }
@@ -87,20 +176,22 @@ class DrawingCanvas extends StatelessWidget {
                 builder: (context, state) {
                   return GestureDetector(
                     onPanUpdate: (details) {
-                      RenderBox renderBox = context.findRenderObject() as RenderBox;
-                      final localPosition = renderBox.globalToLocal(details.globalPosition);
+                      RenderBox renderBox =
+                          context.findRenderObject() as RenderBox;
+                      final localPosition =
+                          renderBox.globalToLocal(details.globalPosition);
                       context.read<DrawingBloc>().add(
-                        AddDrawingPoint(
-                          DrawingPoint(
-                            offset: localPosition,
-                            paint: Paint()
-                              ..color = state.selectedColor
-                              ..strokeWidth = state.strokeWidth
-                              ..strokeCap = StrokeCap.round
-                              ..isAntiAlias = true,
-                          ),
-                        ),
-                      );
+                            AddDrawingPoint(
+                              DrawingPoint(
+                                offset: localPosition,
+                                paint: Paint()
+                                  ..color = state.selectedColor
+                                  ..strokeWidth = state.strokeWidth
+                                  ..strokeCap = StrokeCap.round
+                                  ..isAntiAlias = true,
+                              ),
+                            ),
+                          );
                     },
                     onPanEnd: (details) {
                       context.read<DrawingBloc>().add(EndDrawingStroke());
@@ -115,7 +206,7 @@ class DrawingCanvas extends StatelessWidget {
             ),
           ),
         ),
-        
+
         // Toolbar
         Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -127,7 +218,8 @@ class DrawingCanvas extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                icon: const Icon(Icons.color_lens, size: 36, color: Colors.blueAccent),
+                icon: const Icon(Icons.color_lens,
+                    size: 36, color: Colors.blueAccent),
                 onPressed: () => _pickColor(context),
               ),
               BlocBuilder<DrawingBloc, DrawingState>(
@@ -144,13 +236,15 @@ class DrawingCanvas extends StatelessWidget {
                 },
               ),
               IconButton(
-                icon: const Icon(Icons.undo, size: 36, color: Colors.orangeAccent),
+                icon: const Icon(Icons.undo,
+                    size: 36, color: Colors.orangeAccent),
                 onPressed: () {
                   context.read<DrawingBloc>().add(UndoDrawing());
                 },
               ),
               IconButton(
-                icon: const Icon(Icons.delete, size: 36, color: Colors.redAccent),
+                icon:
+                    const Icon(Icons.delete, size: 36, color: Colors.redAccent),
                 onPressed: () {
                   context.read<DrawingBloc>().add(ClearDrawing());
                 },

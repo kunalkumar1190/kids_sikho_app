@@ -11,6 +11,11 @@ import '../../features/fruits/presentation/fruits_page.dart';
 import '../../features/stories/presentation/stories_page.dart';
 import '../../features/drawing/presentation/drawing_page.dart';
 
+import '../../features/games/presentation/games_page.dart';
+import '../../features/games/presentation/balloon_pop_page.dart';
+import '../../features/games/presentation/memory_match_page.dart';
+import '../../features/games/presentation/listen_and_find_page.dart';
+
 class Routes {
   static const String home = "/";
   static const String alphabet = "/alphabet";
@@ -21,6 +26,10 @@ class Routes {
   static const String fruits = "/fruits";
   static const String stories = "/stories";
   static const String drawing = "/drawing";
+  static const String games = "/games";
+  static const String balloonPop = "/games/balloon";
+  static const String memoryMatch = "/games/memory";
+  static const String findIt = "/games/find_it";
 }
 
 class AppRouter {
@@ -60,6 +69,23 @@ class AppRouter {
         path: Routes.drawing,
         builder: (context, state) => const DrawingPage(),
       ),
+      GoRoute(
+        path: Routes.games,
+        builder: (context, state) => const GamesPage(),
+      ),
+      GoRoute(
+        path: Routes.balloonPop,
+        builder: (context, state) => const BalloonPopPage(),
+      ),
+      GoRoute(
+        path: Routes.memoryMatch,
+        builder: (context, state) => const MemoryMatchPage(),
+      ),
+      GoRoute(
+        path: Routes.findIt,
+        builder: (context, state) => const ListenAndFindPage(),
+      ),
     ],
   );
 }
+

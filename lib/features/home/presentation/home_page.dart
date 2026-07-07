@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_sikho_app/app/routes/app_router.dart';
 import 'package:kids_sikho_app/features/home/widgets/glass_card.dart';
 import 'package:kids_sikho_app/gen/assets.gen.dart';
+import '../../../core/settings/settings_cubit.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -96,7 +98,7 @@ class HomePage extends StatelessWidget {
       lightColor: const Color(0xFFF8BBD0),
       mainColor: const Color(0xFFF06292),
       textColor: const Color(0xFFC2185B),
-      path: "",
+      path: Routes.games,
     ),
   ];
 
@@ -152,7 +154,7 @@ class HomePage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        _buildTopBar(),
+                        _buildTopBar(context),
                         const SizedBox(height: 20),
                         _buildWelcomeBanner(),
                         const SizedBox(height: 30),
@@ -173,7 +175,7 @@ class HomePage extends StatelessWidget {
                       children: [
                         _buildGridMenu(context),
                         const SizedBox(height: 25),
-                        _buildBottomBanners(),
+                        _buildBottomBanners(context),
                         const SizedBox(
                           height: 100,
                         ), // Padding for bottom nav bar
@@ -189,7 +191,44 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildTopBar() {
+  void _showSettingsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Settings",
+              style: GoogleFonts.fredoka(color: Colors.blueAccent)),
+          content: BlocBuilder<SettingsCubit, bool>(
+            builder: (context, isHindi) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("App Language (Stories & Games)",
+                      style: GoogleFonts.nunito(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 10),
+                  SwitchListTile(
+                    title: Text(isHindi ? "Hindi (हिंदी)" : "English"),
+                    value: isHindi,
+                    onChanged: (value) {
+                      context.read<SettingsCubit>().setLanguage(value);
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("Close"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildTopBar(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -245,21 +284,25 @@ class HomePage extends StatelessWidget {
         ),
 
         // Settings Icon
-        Container(
-          width: 50,
-          height: 50,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 5,
-                offset: Offset(0, 2),
-              ),
-            ],
+        GestureDetector(
+          onTap: () => _showSettingsDialog(context),
+          child: Container(
+            width: 50,
+            height: 50,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 5,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child:
+                const Icon(Icons.settings, color: Colors.blueAccent, size: 28),
           ),
-          child: const Icon(Icons.settings, color: Colors.blueAccent, size: 28),
         ),
       ],
     );
@@ -404,7 +447,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomBanners() {
+  Widget _buildBottomBanners(BuildContext context) {
     return Row(
       children: [
         // Daily Goal
@@ -462,11 +505,6 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      "3/5",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
                   ],
                 ),
               ],
@@ -505,7 +543,9 @@ class HomePage extends StatelessWidget {
                 const Text("🤖 👾", style: TextStyle(fontSize: 30)),
                 const SizedBox(height: 5),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(Routes.games);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFEC407A),
                     shape: RoundedRectangleBorder(

@@ -4,6 +4,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import '../bloc/stories_bloc.dart';
 import '../data/models/story_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../core/settings/settings_cubit.dart';
 
 class StoriesPage extends StatelessWidget {
   const StoriesPage({Key? key}) : super(key: key);
@@ -57,156 +58,143 @@ class StoriesPage extends StatelessWidget {
   }
 }
 
-class StoryCard extends StatefulWidget {
+class StoryCard extends StatelessWidget {
   final StoryModel story;
 
   const StoryCard({Key? key, required this.story}) : super(key: key);
 
   @override
-  _StoryCardState createState() => _StoryCardState();
-}
-
-class _StoryCardState extends State<StoryCard> {
-  bool isEnglish = true;
-
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 15,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: 200,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(32),
+    return BlocBuilder<SettingsCubit, bool>(
+      builder: (context, isHindi) {
+        bool isEnglish = !isHindi;
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(32),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 15,
+                offset: const Offset(0, 10),
               ),
-              child: Image.network(
-                widget.story.imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => const Center(
-                  child: Icon(
-                    Icons.image_not_supported,
-                    size: 50,
-                    color: Colors.grey,
+            ],
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(32),
                   ),
+                  child: story.imageUrl.startsWith('http')
+                      ? Image.network(
+                          story.imageUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => const Center(
+                            child: Icon(Icons.image_not_supported, size: 50, color: Colors.grey),
+                          ),
+                        )
+                      : Image.asset(
+                          story.imageUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => const Center(
+                            child: Icon(Icons.image_not_supported, size: 50, color: Colors.grey),
+                          ),
+                        ),
                 ),
               ),
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              isEnglish ? story.titleEn : story.titleHi,
+                              style: GoogleFonts.nunito(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.indigo,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
                       Expanded(
-                        child: Text(
-                          isEnglish
-                              ? widget.story.titleEn
-                              : widget.story.titleHi,
-                          style: GoogleFonts.nunito(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.indigo,
+                        child: SingleChildScrollView(
+                          child: Text(
+                            isEnglish ? story.contentEn : story.contentHi,
+                            style: GoogleFonts.nunito(
+                              fontSize: 20,
+                              height: 1.5,
+                              color: Colors.black87,
+                            ),
                           ),
                         ),
                       ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.language,
-                          color: Colors.blueAccent,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isEnglish = !isEnglish;
-                          });
+                      const SizedBox(height: 16),
+                      BlocBuilder<StoriesBloc, StoriesState>(
+                        builder: (context, state) {
+                          bool isPlaying = state.ttsState == TtsState.playing;
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FloatingActionButton.extended(
+                                heroTag: 'play_btn_${story.id}',
+                                backgroundColor: isPlaying
+                                    ? Colors.redAccent
+                                    : Colors.greenAccent[400],
+                                icon: Icon(
+                                  isPlaying
+                                      ? Icons.stop_rounded
+                                      : Icons.play_arrow_rounded,
+                                  size: 30,
+                                ),
+                                label: Text(
+                                  isPlaying ? 'Stop' : 'Listen',
+                                  style: GoogleFonts.nunito(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  if (isPlaying) {
+                                    context.read<StoriesBloc>().add(
+                                      StopStoryEvent(),
+                                    );
+                                  } else {
+                                    context.read<StoriesBloc>().add(
+                                      PlayStoryEvent(
+                                        textToSpeak: isEnglish
+                                            ? story.contentEn
+                                            : story.contentHi,
+                                        languageCode: isEnglish ? 'en-US' : 'hi-IN',
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+                            ],
+                          );
                         },
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Text(
-                        isEnglish
-                            ? widget.story.contentEn
-                            : widget.story.contentHi,
-                        style: GoogleFonts.nunito(
-                          fontSize: 20,
-                          height: 1.5,
-                          color: Colors.black87,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  BlocBuilder<StoriesBloc, StoriesState>(
-                    builder: (context, state) {
-                      bool isPlaying = state.ttsState == TtsState.playing;
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FloatingActionButton.extended(
-                            heroTag: 'play_btn_${widget.story.id}',
-                            backgroundColor: isPlaying
-                                ? Colors.redAccent
-                                : Colors.greenAccent[400],
-                            icon: Icon(
-                              isPlaying
-                                  ? Icons.stop_rounded
-                                  : Icons.play_arrow_rounded,
-                              size: 30,
-                            ),
-                            label: Text(
-                              isPlaying ? 'Stop' : 'Listen',
-                              style: GoogleFonts.nunito(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                            onPressed: () {
-                              if (isPlaying) {
-                                context.read<StoriesBloc>().add(
-                                  StopStoryEvent(),
-                                );
-                              } else {
-                                context.read<StoriesBloc>().add(
-                                  PlayStoryEvent(
-                                    textToSpeak: isEnglish
-                                        ? widget.story.contentEn
-                                        : widget.story.contentHi,
-                                    languageCode: isEnglish ? 'en-US' : 'hi-IN',
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -2,7 +2,7 @@ part of 'stories_bloc.dart';
 
 enum TtsState { stopped, playing, paused }
 
-class StoriesState extends Equatable {
+class StoriesState {
   final List<StoryModel> stories;
   final bool isLoading;
   final String error;
@@ -28,7 +28,4 @@ class StoriesState extends Equatable {
       ttsState: ttsState ?? this.ttsState,
     );
   }
-
-  @override
-  List<Object> get props => [stories, isLoading, error, ttsState];
 }

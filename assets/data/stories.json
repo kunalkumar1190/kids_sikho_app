@@ -3,32 +3,48 @@
     "id": 1,
     "title_en": "The Thirsty Crow",
     "title_hi": "प्यासा कौवा",
-    "content_en": "Once upon a time, there was a very thirsty crow. He flew everywhere looking for water. Finally, he saw a pitcher with a little water in it. The crow dropped stones into the pitcher until the water came up. He drank the water and flew away happily.",
-    "content_hi": "एक बार की बात है, एक कौवा बहुत प्यासा था। वह पानी की तलाश में हर जगह उड़ा। अंत में, उसे एक घड़ा मिला जिसमें थोड़ा पानी था। कौवे ने घड़े में कंकड़ डाले जब तक कि पानी ऊपर नहीं आ गया। उसने पानी पिया और खुशी से उड़ गया।",
-    "imageUrl": "https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=400&auto=format&fit=crop"
+    "content_en": "One hot day, a crow was very thirsty. He found a pot with a little water. He put small stones into the pot. The water came up. The crow drank the water and flew away happily.\n\n Moral: Think wisely. Every problem has a solution.",
+    "content_hi": "एक गर्म दिन, एक कौवा बहुत प्यासा था। उसे एक घड़ा मिला जिसमें थोड़ा पानी था। उसने घड़े में छोटे-छोटे कंकड़ डाले। पानी ऊपर आ गया। कौवे ने पानी पिया और खुशी-खुशी उड़ गया।\n\n सीख: बुद्धिमानी से सोचो। हर समस्या का समाधान होता है।",
+    "imageUrl": "assets/images/payasha_cawa.png"
   },
   {
     "id": 2,
-    "title_en": "The Fox and the Grapes",
-    "title_hi": "लोमड़ी और अंगूर",
-    "content_en": "A hungry fox saw some beautiful grapes hanging from a vine. He jumped high, but couldn't reach them. He tried again and again. Finally, he gave up and said, 'Those grapes are probably sour anyway.'",
-    "content_hi": "एक भूखी लोमड़ी ने बेल से लटकते हुए कुछ सुंदर अंगूर देखे। वह ऊंची कूदी, लेकिन उन तक नहीं पहुंच सकी। उसने बार-बार कोशिश की। अंत में, उसने हार मान ली और कहा, 'वे अंगूर वैसे भी खट्टे होंगे।'",
-    "imageUrl": "https://images.unsplash.com/photo-1516934024742-b461fba47600?q=80&w=400&auto=format&fit=crop"
+    "title_en": "The Lion and the Mouse",
+    "title_hi": "शेर और चूहा",
+    "content_en": "A little mouse woke up a lion. The lion let the mouse go. One day, the lion was trapped in a net. The mouse bit the net and helped the lion. They became good friends.\n\n Moral: Kindness is always rewarded.",
+    "content_hi": "एक छोटा चूहा शेर को जगा देता है। शेर उसे छोड़ देता है। एक दिन शेर जाल में फँस जाता है। चूहा जाल काटकर शेर की मदद करता है। दोनों अच्छे दोस्त बन जाते हैं।\n\n सीख: दयालुता का फल हमेशा अच्छा मिलता है।",
+    "imageUrl": "assets/images/lion_rat.png"
   },
   {
     "id": 3,
     "title_en": "The Hare and the Tortoise",
     "title_hi": "खरगोश और कछुआ",
-    "content_en": "A hare was very proud of his speed and made fun of a slow tortoise. They decided to have a race. The hare ran fast and went to sleep under a tree. The tortoise walked slowly but steadily and won the race.",
-    "content_hi": "एक खरगोश को अपनी गति पर बहुत गर्व था और उसने एक धीमे कछुए का मज़ाक उड़ाया। उन्होंने एक दौड़ लगाने का फैसला किया। खरगोश तेज दौड़ा और एक पेड़ के नीचे सो गया। कछुआ धीरे-धीरे लेकिन लगातार चलता रहा और दौड़ जीत गया।",
-    "imageUrl": "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?q=80&w=400&auto=format&fit=crop"
+    "content_en": "A fast hare laughed at a slow tortoise. They had a race. The hare slept under a tree. The tortoise kept walking slowly. The tortoise won the race.\n\n Moral: Slow and steady wins the race.",
+    "content_hi": "एक तेज खरगोश धीमे कछुए पर हँसता था। दोनों ने दौड़ लगाई। खरगोश पेड़ के नीचे सो गया। कछुआ धीरे-धीरे चलता रहा। कछुआ दौड़ जीत गया।\n\n सीख: धीरे और लगातार चलने वाला ही जीतता है।",
+    "imageUrl": "assets/images/rabit_race.png"
   },
   {
     "id": 4,
-    "title_en": "The Lion and the Mouse",
-    "title_hi": "शेर और चूहा",
-    "content_en": "A mouse ran over a sleeping lion, waking him up. The lion caught the mouse but let him go. Later, hunters caught the lion in a net. The mouse heard the lion roar and chewed through the net, saving his life.",
-    "content_hi": "एक चूहा सोए हुए शेर के ऊपर दौड़ा, जिससे वह जाग गया। शेर ने चूहे को पकड़ लिया लेकिन उसे जाने दिया। बाद में, शिकारियों ने शेर को जाल में पकड़ लिया। चूहे ने शेर की दहाड़ सुनी और जाल को चबाकर उसकी जान बचाई।",
-    "imageUrl": "https://images.unsplash.com/photo-1517825738774-7de9363ef735?q=80&w=400&auto=format&fit=crop"
+    "title_en": "The Fox and the Grapes",
+    "title_hi": "लोमड़ी और अंगूर",
+    "content_en": "A fox saw sweet grapes. He jumped again and again. He could not reach them. He went away saying, 'The grapes are sour.'\n\n Moral: Do not make excuses when you fail.",
+    "content_hi": "एक लोमड़ी ने मीठे अंगूर देखे। वह बार-बार कूदी। वह अंगूर तक नहीं पहुँच सकी। वह बोली, 'अंगूर खट्टे हैं।' और चली गई।\n\n सीख: असफल होने पर बहाने नहीं बनाने चाहिए।",
+    "imageUrl": "assets/images/fox_graps.png"
+  },
+  {
+    "id": 5,
+    "title_en": "The Greedy Dog",
+    "title_hi": "लालची कुत्ता",
+    "content_en": "A dog had a bone. He saw his reflection in the water. He thought another dog had a bigger bone. He barked and dropped his own bone into the river.\n\n Moral: Do not be greedy. Be happy with what you have.",
+    "content_hi": "एक कुत्ते के पास हड्डी थी। उसने पानी में अपनी परछाई देखी। उसे लगा कि दूसरे कुत्ते के पास बड़ी हड्डी है। वह भौंका और उसकी अपनी हड्डी पानी में गिर गई।\n\n सीख: लालच मत करो। जो है उसी में खुश रहो।",
+    "imageUrl": "assets/images/gready_dog.png"
+  },
+  {
+    "id": 6,
+    "title_en": "The Honest Woodcutter",
+    "title_hi": "ईमानदार लकड़हारा",
+    "content_en": "A woodcutter dropped his axe into a river. A fairy gave him a golden axe. He said, 'It is not mine.' The fairy gave him his own axe and rewarded his honesty.\n\n Moral: Honesty is the best policy.",
+    "content_hi": "एक लकड़हारे की कुल्हाड़ी नदी में गिर गई। एक परी सोने की कुल्हाड़ी लाई। उसने कहा, 'यह मेरी नहीं है।' परी ने उसकी असली कुल्हाड़ी लौटाई और उसकी ईमानदारी का इनाम दिया।\n\n सीख: ईमानदारी सबसे अच्छी नीति है।",
+    "imageUrl": "assets/images/woodcutter.png"
   }
 ]
