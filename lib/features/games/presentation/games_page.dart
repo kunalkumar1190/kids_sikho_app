@@ -68,6 +68,13 @@ class GamesPage extends StatelessWidget {
                     color: Colors.orangeAccent,
                     route: Routes.findIt,
                   ),
+                  _buildGameCard(
+                    context,
+                    title: "Match It!",
+                    emoji: "🔗",
+                    color: Colors.purpleAccent,
+                    route: Routes.matchFollowing,
+                  ),
                 ],
               ),
             ),

@@ -6,6 +6,7 @@ import 'package:kids_sikho_app/app/routes/app_router.dart';
 import 'package:kids_sikho_app/features/home/widgets/glass_card.dart';
 import 'package:kids_sikho_app/gen/assets.gen.dart';
 import '../../../core/settings/settings_cubit.dart';
+import '../../../core/widgets/language_toggle.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -100,6 +101,14 @@ class HomePage extends StatelessWidget {
       textColor: const Color(0xFFC2185B),
       path: Routes.games,
     ),
+    HomeMenuItem(
+      title: "Homework",
+      emoji: "✍️",
+      lightColor: const Color(0xFFE8F5E9),
+      mainColor: const Color(0xFF81C784),
+      textColor: const Color(0xFF2E7D32),
+      path: Routes.homework,
+    ),
   ];
 
   @override
@@ -191,43 +200,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _showSettingsDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Settings",
-              style: GoogleFonts.fredoka(color: Colors.blueAccent)),
-          content: BlocBuilder<SettingsCubit, bool>(
-            builder: (context, isHindi) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("App Language (Stories & Games)",
-                      style: GoogleFonts.nunito(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 10),
-                  SwitchListTile(
-                    title: Text(isHindi ? "Hindi (हिंदी)" : "English"),
-                    value: isHindi,
-                    onChanged: (value) {
-                      context.read<SettingsCubit>().setLanguage(value);
-                    },
-                  ),
-                ],
-              );
-            },
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Close"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   Widget _buildTopBar(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,28 +253,6 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ],
-        ),
-
-        // Settings Icon
-        GestureDetector(
-          onTap: () => _showSettingsDialog(context),
-          child: Container(
-            width: 50,
-            height: 50,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 5,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child:
-                const Icon(Icons.settings, color: Colors.blueAccent, size: 28),
-          ),
         ),
       ],
     );
@@ -448,122 +398,70 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildBottomBanners(BuildContext context) {
-    return Row(
-      children: [
-        // Daily Goal
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF3E5F5), // Light purple
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFAB47BC), // Purple
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: const Text(
-                    "Daily Goal",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+    return Row(children: [
+      // Daily Goal
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF3E5F5), // Light purple
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFAB47BC), // Purple
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: const Text(
+                  "Daily Goal",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("⭐", style: TextStyle(fontSize: 30)),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Keep it up!",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          LinearProgressIndicator(
-                            value: 0.6,
-                            backgroundColor: Colors.white,
+              ),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("⭐", style: TextStyle(fontSize: 30)),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Keep it up!",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
                             color: Colors.green,
-                            minHeight: 8,
-                            borderRadius: BorderRadius.circular(4),
                           ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 5),
+                        LinearProgressIndicator(
+                          value: 0.6,
+                          backgroundColor: Colors.white,
+                          color: Colors.green,
+                          minHeight: 8,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-        const SizedBox(width: 15),
-        // Fun Zone
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFEBEE), // Light pink
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFEC407A), // Pink
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: const Text(
-                    "Fun Zone",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                const Text("🤖 👾", style: TextStyle(fontSize: 30)),
-                const SizedBox(height: 5),
-                ElevatedButton(
-                  onPressed: () {
-                    context.push(Routes.games);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFEC407A),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    minimumSize: const Size(double.infinity, 30),
-                  ),
-                  child: const Text(
-                    "Play Now!",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
+      ),
+      const SizedBox(width: 15),
+    ]);
   }
 }
 

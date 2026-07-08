@@ -13,8 +13,13 @@ import '../../features/drawing/presentation/drawing_page.dart';
 
 import '../../features/games/presentation/games_page.dart';
 import '../../features/games/presentation/balloon_pop_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/games/presentation/memory_match_page.dart';
 import '../../features/games/presentation/listen_and_find_page.dart';
+import '../../features/games/presentation/match_the_following_page.dart';
+import '../../features/homework/presentation/tracing_page.dart';
+import '../../features/homework/bloc/homework_bloc.dart';
+import '../../features/homework/bloc/homework_event.dart';
 
 class Routes {
   static const String home = "/";
@@ -30,6 +35,8 @@ class Routes {
   static const String balloonPop = "/games/balloon";
   static const String memoryMatch = "/games/memory";
   static const String findIt = "/games/find_it";
+  static const String matchFollowing = "/games/match";
+  static const String homework = "/homework";
 }
 
 class AppRouter {
@@ -85,7 +92,17 @@ class AppRouter {
         path: Routes.findIt,
         builder: (context, state) => const ListenAndFindPage(),
       ),
+      GoRoute(
+        path: Routes.matchFollowing,
+        builder: (context, state) => const MatchTheFollowingPage(),
+      ),
+      GoRoute(
+        path: Routes.homework,
+        builder: (context, state) => BlocProvider(
+          create: (context) => HomeworkBloc()..add(LoadHomeworkEvent()),
+          child: const TracingPage(),
+        ),
+      ),
     ],
   );
 }
-

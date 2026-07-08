@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/services/audio_service.dart';
 import '../../../core/settings/settings_cubit.dart';
+import '../../../core/widgets/language_toggle.dart';
 
 class ListenAndFindPage extends StatefulWidget {
   const ListenAndFindPage({super.key});
@@ -38,8 +39,17 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
     {"symbol": "🍎", "name_en": "the apple", "name_hi": "सेब"},
   ];
 
-  late List<Map<String, String>> _currentOptions;
-  late Map<String, String> _targetItem;
+  List<Map<String, String>> _currentOptions = [
+    {"symbol": "A", "name_en": "the letter A", "name_hi": "अक्षर ए"},
+    {"symbol": "1", "name_en": "the number 1", "name_hi": "नंबर एक"},
+    {"symbol": "🐶", "name_en": "the dog", "name_hi": "कुत्ता"},
+    {"symbol": "⭐", "name_en": "the star", "name_hi": "तारा"},
+  ];
+  Map<String, String> _targetItem = {
+    "symbol": "A",
+    "name_en": "the letter A",
+    "name_hi": "अक्षर ए"
+  };
   int _score = 0;
   bool _isProcessing = false;
 
@@ -54,8 +64,74 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _startNewRound();
+      _showLanguageSelectionDialog();
     });
+  }
+
+  void _showLanguageSelectionDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          title: Text(
+            "Choose Language\nभाषा चुनें",
+            style: GoogleFonts.nunito(
+              color: Colors.orangeAccent,
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
+            textAlign: TextAlign.center,
+          ).animate().scale(duration: 400.ms, curve: Curves.easeOutBack),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildLanguageOption("English", false, Colors.blueAccent),
+              const SizedBox(height: 16),
+              _buildLanguageOption("Hindi (हिंदी)", true, Colors.green),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildLanguageOption(String title, bool isHindi, Color color) {
+    return InkWell(
+      onTap: () async {
+        await context.read<SettingsCubit>().setLanguage(isHindi);
+        if (mounted) {
+          Navigator.pop(context);
+          _startNewRound();
+        }
+      },
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: color,
+            width: 3,
+          ),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: GoogleFonts.nunito(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   void _startNewRound() {
@@ -147,13 +223,15 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
         elevation: 0,
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.volume_up),
-            onPressed: () {
-              if (!_isProcessing) _askQuestion();
-            },
-            tooltip: 'Repeat Question',
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.volume_up),
+          //   onPressed: () {
+          //     if (!_isProcessing) _askQuestion();
+          //   },
+          //   tooltip: 'Repeat Question',
+          // ),
+          const LanguageToggleWidget(),
+          const SizedBox(width: 16),
         ],
       ),
       body: Column(

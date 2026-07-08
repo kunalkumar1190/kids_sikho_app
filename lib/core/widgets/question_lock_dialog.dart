@@ -2,9 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
 
-Future<bool> showParentLockDialog(BuildContext context) async {
-  final num1 = 3 + Random().nextInt(7); // 3 to 9
-  final num2 = 2 + Random().nextInt(8); // 2 to 9
+enum LockMode { parent, child }
+
+Future<bool> showParentLockDialog(BuildContext context,
+    {LockMode mode = LockMode.parent}) async {
+  final int num1;
+  final int num2;
+
+  final random = Random();
+
+  if (mode == LockMode.parent) {
+    // Parent mode: generate numbers from 1 to 4
+    num1 = random.nextInt(4) + 1; // Range: 1–4
+    num2 = random.nextInt(4) + 1; // Range: 1–4
+  } else {
+    // Child mode: generate easy numbers from 1 to 4
+    num1 = random.nextInt(2) + 1; // Range: 1–2
+    num2 = random.nextInt(4) + 1; // Range: 1–4
+  }
+
   final correctAnswer = num1 + num2;
 
   final controller = TextEditingController();
@@ -18,10 +34,12 @@ Future<bool> showParentLockDialog(BuildContext context) async {
         builder: (context, setState) {
           return AlertDialog(
             title: Row(
-              children: const [
-                Icon(Icons.lock, color: Colors.red),
-                SizedBox(width: 10),
-                Text("Parent Lock"),
+              children: [
+                Icon(mode == LockMode.parent ? Icons.lock : Icons.extension,
+                    color:
+                        mode == LockMode.parent ? Colors.red : Colors.orange),
+                const SizedBox(width: 10),
+                Text(mode == LockMode.parent ? "Parent Lock" : "Quick Check"),
               ],
             ),
             content: Column(

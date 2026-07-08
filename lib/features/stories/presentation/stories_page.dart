@@ -5,6 +5,7 @@ import '../bloc/stories_bloc.dart';
 import '../data/models/story_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../core/settings/settings_cubit.dart';
+import '../../../core/widgets/language_toggle.dart';
 
 class StoriesPage extends StatelessWidget {
   const StoriesPage({Key? key}) : super(key: key);
@@ -26,6 +27,10 @@ class StoriesPage extends StatelessWidget {
           backgroundColor: Colors.orangeAccent,
           centerTitle: true,
           elevation: 0,
+          actions: const [
+            LanguageToggleWidget(),
+            SizedBox(width: 16),
+          ],
         ),
         body: BlocBuilder<StoriesBloc, StoriesState>(
           builder: (context, state) {

@@ -1,0 +1,194 @@
+[
+  {
+    "symbol": "A",
+    "name_en": "the letter A",
+    "name_hi": "अक्षर ए",
+    "type": "text"
+  },
+  {
+    "symbol": "B",
+    "name_en": "the letter B",
+    "name_hi": "अक्षर बी",
+    "type": "text"
+  },
+  {
+    "symbol": "C",
+    "name_en": "the letter C",
+    "name_hi": "अक्षर सी",
+    "type": "text"
+  },
+  {
+    "symbol": "D",
+    "name_en": "the letter D",
+    "name_hi": "अक्षर डी",
+    "type": "text"
+  },
+  {
+    "symbol": "E",
+    "name_en": "the letter E",
+    "name_hi": "अक्षर ई",
+    "type": "text"
+  },
+  {
+    "symbol": "F",
+    "name_en": "the letter F",
+    "name_hi": "अक्षर एफ",
+    "type": "text"
+  },
+  {
+    "symbol": "G",
+    "name_en": "the letter G",
+    "name_hi": "अक्षर जी",
+    "type": "text"
+  },
+  {
+    "symbol": "H",
+    "name_en": "the letter H",
+    "name_hi": "अक्षर एच",
+    "type": "text"
+  },
+  {
+    "symbol": "I",
+    "name_en": "the letter I",
+    "name_hi": "अक्षर आई",
+    "type": "text"
+  },
+  {
+    "symbol": "J",
+    "name_en": "the letter J",
+    "name_hi": "अक्षर जे",
+    "type": "text"
+  },
+  {
+    "symbol": "K",
+    "name_en": "the letter K",
+    "name_hi": "अक्षर के",
+    "type": "text"
+  },
+  {
+    "symbol": "L",
+    "name_en": "the letter L",
+    "name_hi": "अक्षर एल",
+    "type": "text"
+  },
+  {
+    "symbol": "M",
+    "name_en": "the letter M",
+    "name_hi": "अक्षर एम",
+    "type": "text"
+  },
+  {
+    "symbol": "N",
+    "name_en": "the letter N",
+    "name_hi": "अक्षर एन",
+    "type": "text"
+  },
+  {
+    "symbol": "O",
+    "name_en": "the letter O",
+    "name_hi": "अक्षर ओ",
+    "type": "text"
+  },
+  {
+    "symbol": "P",
+    "name_en": "the letter P",
+    "name_hi": "अक्षर पी",
+    "type": "text"
+  },
+  {
+    "symbol": "Q",
+    "name_en": "the letter Q",
+    "name_hi": "अक्षर क्यू",
+    "type": "text"
+  },
+  {
+    "symbol": "R",
+    "name_en": "the letter R",
+    "name_hi": "अक्षर आर",
+    "type": "text"
+  },
+  {
+    "symbol": "S",
+    "name_en": "the letter S",
+    "name_hi": "अक्षर एस",
+    "type": "text"
+  },
+  {
+    "symbol": "T",
+    "name_en": "the letter T",
+    "name_hi": "अक्षर टी",
+    "type": "text"
+  },
+  {
+    "symbol": "U",
+    "name_en": "the letter U",
+    "name_hi": "अक्षर यू",
+    "type": "text"
+  },
+  {
+    "symbol": "V",
+    "name_en": "the letter V",
+    "name_hi": "अक्षर वी",
+    "type": "text"
+  },
+  {
+    "symbol": "W",
+    "name_en": "the letter W",
+    "name_hi": "अक्षर डब्ल्यू",
+    "type": "text"
+  },
+  {
+    "symbol": "X",
+    "name_en": "the letter X",
+    "name_hi": "अक्षर एक्स",
+    "type": "text"
+  },
+  {
+    "symbol": "Y",
+    "name_en": "the letter Y",
+    "name_hi": "अक्षर वाई",
+    "type": "text"
+  },
+  {
+    "symbol": "Z",
+    "name_en": "the letter Z",
+    "name_hi": "अक्षर ज़ेड",
+    "type": "text"
+  },
+  {
+    "symbol": "0",
+    "name_en": "the number 0",
+    "name_hi": "नंबर शून्य",
+    "type": "text"
+  },
+  {
+    "symbol": "1",
+    "name_en": "the number 1",
+    "name_hi": "नंबर एक",
+    "type": "text"
+  },
+  {
+    "symbol": "6",
+    "name_en": "the number 6",
+    "name_hi": "नंबर छह",
+    "type": "text"
+  },
+  {
+    "symbol": "7",
+    "name_en": "the number 7",
+    "name_hi": "नंबर सात",
+    "type": "text"
+  },
+  {
+    "symbol": "8",
+    "name_en": "the number 8",
+    "name_hi": "नंबर आठ",
+    "type": "text"
+  },
+  {
+    "symbol": "9",
+    "name_en": "the number 9",
+    "name_hi": "नंबर नौ",
+    "type": "text"
+  }
+]
