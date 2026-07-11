@@ -1,4 +1,4 @@
-package com.example.sikho_basic
+package com.seekhobasic.app
 
 import io.flutter.embedding.android.FlutterActivity
 

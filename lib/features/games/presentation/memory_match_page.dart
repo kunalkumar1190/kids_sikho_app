@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/services/audio_service.dart';
 import '../../../core/theme/app_theme.dart';

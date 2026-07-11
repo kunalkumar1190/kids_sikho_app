@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
-import 'package:sikho_basic/core/widgets/question_lock_dialog.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/widgets/question_lock_dialog.dart';
 import '../bloc/drawing_bloc.dart';
 import '../data/models/drawing_point.dart';
 

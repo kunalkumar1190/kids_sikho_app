@@ -1,5 +1,5 @@
-# Kids Sikho (Kids Learning App)
-//SikhoBasics
+# Kids seekho (Kids Learning App)
+//seekhoBasics
 
 
 A fun, interactive, and beautifully designed Flutter application to help preschoolers and young kids learn basic educational concepts in an engaging way. The app includes alphabets, numbers, colors, shapes, storytelling, interactive games, and drawing/tracing tools.
@@ -48,7 +48,7 @@ A fun, interactive, and beautifully designed Flutter application to help prescho
 
 2. **Navigate to the project directory**:
    ```bash
-   cd sikho_basic
+   cd seekho_basic
    ```
 
 3. **Install dependencies**:

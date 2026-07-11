@@ -37,7 +37,7 @@ class _KidsLearningAppState extends State<KidsLearningApp> {
       create: (context) => SettingsCubit(),
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'Kids Learning',
+        title: 'seekho Basic App',
         theme: AppTheme.lightTheme,
         routerConfig: AppRouter.router,
       ),

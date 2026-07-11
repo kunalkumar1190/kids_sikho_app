@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
 
 class TracingMask {
   final Set<int> inkPixels; // Stores flattened index: y * width + x
@@ -17,7 +17,7 @@ class TracingMask {
   bool hitTest(Offset point, {double tolerance = 18.0}) {
     int px = point.dx.toInt();
     int py = point.dy.toInt();
-    
+
     int t = tolerance.toInt();
     for (int y = py - t; y <= py + t; y++) {
       for (int x = px - t; x <= px + t; x++) {
@@ -41,7 +41,8 @@ class LetterPathUtil {
   /// Generates a pixel mask from text
   static Future<TracingMask> createTextMask(String text, Size size) async {
     final recorder = ui.PictureRecorder();
-    final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, size.width, size.height));
+    final canvas =
+        Canvas(recorder, Rect.fromLTWH(0, 0, size.width, size.height));
 
     final textPainter = TextPainter(
       text: TextSpan(
@@ -66,15 +67,17 @@ class LetterPathUtil {
     textPainter.paint(canvas, offset);
 
     final picture = recorder.endRecording();
-    final image = await picture.toImage(size.width.toInt(), size.height.toInt());
-    
-    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
-    
+    final image =
+        await picture.toImage(size.width.toInt(), size.height.toInt());
+
+    final ByteData? byteData =
+        await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+
     Set<int> inkPixels = {};
     if (byteData != null) {
       for (int i = 0; i < byteData.lengthInBytes; i += 4) {
         // rgba, check alpha channel
-        if (byteData.getUint8(i + 3) > 10) { 
+        if (byteData.getUint8(i + 3) > 10) {
           int pixelIndex = i ~/ 4;
           inkPixels.add(pixelIndex);
         }
@@ -87,5 +90,4 @@ class LetterPathUtil {
       height: size.height.toInt(),
     );
   }
-
 }

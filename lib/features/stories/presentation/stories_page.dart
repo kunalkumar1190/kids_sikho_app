@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import '../bloc/stories_bloc.dart';
 import '../data/models/story_model.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
 import '../../../core/settings/settings_cubit.dart';
 import '../../../core/widgets/language_toggle.dart';
 
@@ -52,8 +52,8 @@ class StoriesPage extends StatelessWidget {
                 cardsCount: state.stories.length,
                 cardBuilder:
                     (context, index, percentThresholdX, percentThresholdY) {
-                      return StoryCard(story: state.stories[index]);
-                    },
+                  return StoryCard(story: state.stories[index]);
+                },
               ),
             );
           },
@@ -98,15 +98,19 @@ class StoryCard extends StatelessWidget {
                       ? Image.network(
                           story.imageUrl,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => const Center(
-                            child: Icon(Icons.image_not_supported, size: 50, color: Colors.grey),
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Center(
+                            child: Icon(Icons.image_not_supported,
+                                size: 50, color: Colors.grey),
                           ),
                         )
                       : Image.asset(
                           story.imageUrl,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => const Center(
-                            child: Icon(Icons.image_not_supported, size: 50, color: Colors.grey),
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Center(
+                            child: Icon(Icons.image_not_supported,
+                                size: 50, color: Colors.grey),
                           ),
                         ),
                 ),
@@ -174,17 +178,18 @@ class StoryCard extends StatelessWidget {
                                 onPressed: () {
                                   if (isPlaying) {
                                     context.read<StoriesBloc>().add(
-                                      StopStoryEvent(),
-                                    );
+                                          StopStoryEvent(),
+                                        );
                                   } else {
                                     context.read<StoriesBloc>().add(
-                                      PlayStoryEvent(
-                                        textToSpeak: isEnglish
-                                            ? story.contentEn
-                                            : story.contentHi,
-                                        languageCode: isEnglish ? 'en-US' : 'hi-IN',
-                                      ),
-                                    );
+                                          PlayStoryEvent(
+                                            textToSpeak: isEnglish
+                                                ? story.contentEn
+                                                : story.contentHi,
+                                            languageCode:
+                                                isEnglish ? 'en-US' : 'hi-IN',
+                                          ),
+                                        );
                                   }
                                 },
                               ),

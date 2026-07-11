@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
-import 'package:sikho_basic/app/routes/app_router.dart';
-import 'package:sikho_basic/features/home/widgets/glass_card.dart';
-import 'package:sikho_basic/gen/assets.gen.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/app/routes/app_router.dart';
+import 'package:seekho_basic/features/home/widgets/glass_card.dart';
+import 'package:seekho_basic/gen/assets.gen.dart';
 import '../../../core/settings/settings_cubit.dart';
 import '../../../core/widgets/language_toggle.dart';
 
@@ -223,7 +223,7 @@ class HomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Kids ",
+              "Seekho ",
               style: AppTextStyle.fredoka(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -238,7 +238,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Text(
-              "Learning",
+              "Basic",
               style: AppTextStyle.fredoka(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -253,6 +253,9 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        SizedBox(
+          width: 30,
         ),
       ],
     );

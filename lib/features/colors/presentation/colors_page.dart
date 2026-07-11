@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
 
 import '../../../core/services/audio_service.dart';
 import '../bloc/colors_bloc.dart';
@@ -97,8 +97,11 @@ class _ColorsPageState extends State<ColorsPage> {
                                 Icons.palette,
                                 color: Colors.white54,
                                 size: 30,
-                              ).animate(onPlay: (controller) => controller.repeat())
-                               .shimmer(duration: 2.seconds),
+                              )
+                                  .animate(
+                                      onPlay: (controller) =>
+                                          controller.repeat())
+                                  .shimmer(duration: 2.seconds),
                             ),
                             Text(
                               item.name,
@@ -114,10 +117,14 @@ class _ColorsPageState extends State<ColorsPage> {
                                   ),
                                 ],
                               ),
-                            ).animate()
-                             .scale(delay: (50 * index).ms, duration: 400.ms, curve: Curves.easeOutBack)
-                             .then()
-                             .shake(duration: 500.ms),
+                            )
+                                .animate()
+                                .scale(
+                                    delay: (50 * index).ms,
+                                    duration: 400.ms,
+                                    curve: Curves.easeOutBack)
+                                .then()
+                                .shake(duration: 500.ms),
                           ],
                         ),
                       ),

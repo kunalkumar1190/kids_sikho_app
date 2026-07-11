@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
 
 import '../../../app/routes/app_router.dart';
 import '../../home/widgets/glass_card.dart';

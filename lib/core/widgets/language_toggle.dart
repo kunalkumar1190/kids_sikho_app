@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
 import '../settings/settings_cubit.dart';
 
 class LanguageToggleWidget extends StatelessWidget {
@@ -21,15 +21,22 @@ class LanguageToggleWidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               gradient: LinearGradient(
-                colors: isHindi 
-                    ? [const Color(0xFFFF9933), const Color(0xFF138808)] // India Flag vibes
-                    : [const Color(0xFF448AFF), const Color(0xFF1976D2)], // English Blue vibes
+                colors: isHindi
+                    ? [
+                        const Color(0xFFFF9933),
+                        const Color(0xFF138808)
+                      ] // India Flag vibes
+                    : [
+                        const Color(0xFF448AFF),
+                        const Color(0xFF1976D2)
+                      ], // English Blue vibes
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: (isHindi ? Colors.orange : Colors.blue).withOpacity(0.4),
+                  color:
+                      (isHindi ? Colors.orange : Colors.blue).withOpacity(0.4),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                 ),
@@ -55,7 +62,9 @@ class LanguageToggleWidget extends StatelessWidget {
                         style: AppTextStyle.nunito(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: isHindi ? const Color(0xFFFF9933) : const Color(0xFF1976D2),
+                          color: isHindi
+                              ? const Color(0xFFFF9933)
+                              : const Color(0xFF1976D2),
                         ),
                       ),
                     ),
@@ -67,11 +76,23 @@ class LanguageToggleWidget extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 12),
-                        child: isHindi ? const Text("EN", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)) : const SizedBox(),
+                        child: isHindi
+                            ? const Text("EN",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14))
+                            : const SizedBox(),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 12),
-                        child: !isHindi ? const Text("HI", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)) : const SizedBox(),
+                        child: !isHindi
+                            ? const Text("HI",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14))
+                            : const SizedBox(),
                       ),
                     ],
                   ),

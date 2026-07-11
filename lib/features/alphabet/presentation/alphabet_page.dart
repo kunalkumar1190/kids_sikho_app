@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:seekho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 import '../../../core/services/audio_service.dart';
@@ -73,7 +73,8 @@ class _AlphabetPageState extends State<AlphabetPage> {
                     }
                     return true;
                   },
-                  cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
+                  cardBuilder:
+                      (context, index, percentThresholdX, percentThresholdY) {
                     final item = alphabetData[index];
                     final colors = [
                       Colors.orange.shade300,
