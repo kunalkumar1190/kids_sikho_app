@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 
 class AppTheme {
   // Bright Kid-Friendly Colors
@@ -29,28 +29,28 @@ class AppTheme {
         error: error,
       ),
       scaffoldBackgroundColor: backgroundLight,
-      textTheme: GoogleFonts.nunitoTextTheme().copyWith(
-        displayLarge: GoogleFonts.nunito(
+      textTheme: TextTheme(
+        displayLarge: AppTextStyle.nunito(
           color: textPrimary,
           fontWeight: FontWeight.w800,
           fontSize: 32,
         ),
-        displayMedium: GoogleFonts.nunito(
+        displayMedium: AppTextStyle.nunito(
           color: textPrimary,
           fontWeight: FontWeight.w700,
           fontSize: 28,
         ),
-        headlineLarge: GoogleFonts.nunito(
+        headlineLarge: AppTextStyle.nunito(
           color: textPrimary,
           fontWeight: FontWeight.w700,
           fontSize: 24,
         ),
-        bodyLarge: GoogleFonts.nunito(
+        bodyLarge: AppTextStyle.nunito(
           color: textPrimary,
           fontWeight: FontWeight.w600,
           fontSize: 18,
         ),
-        bodyMedium: GoogleFonts.nunito(
+        bodyMedium: AppTextStyle.nunito(
           color: textSecondary,
           fontWeight: FontWeight.w500,
           fontSize: 16,
@@ -76,7 +76,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
-          textStyle: GoogleFonts.nunito(
+          textStyle: AppTextStyle.nunito(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),

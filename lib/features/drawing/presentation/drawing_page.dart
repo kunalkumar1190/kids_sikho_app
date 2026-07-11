@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:kids_sikho_app/core/widgets/question_lock_dialog.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
+import 'package:sikho_basic/core/widgets/question_lock_dialog.dart';
 import '../bloc/drawing_bloc.dart';
 import '../data/models/drawing_point.dart';
 
@@ -162,7 +162,7 @@ class _DrawingPageState extends State<DrawingPage>
                                 const SizedBox(width: 10),
                                 Text(
                                   '🎨 Draw & Learn',
-                                  style: GoogleFonts.nunito(
+                                  style: AppTextStyle.nunito(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
                                     color: Colors.white,
@@ -308,7 +308,7 @@ class _DrawingCanvasState extends State<DrawingCanvas>
             const SizedBox(width: 10),
             Text(
               '🎨 Pick a Color!',
-              style: GoogleFonts.nunito(
+              style: AppTextStyle.nunito(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
                 color: Colors.pink.shade400,
@@ -334,7 +334,7 @@ class _DrawingCanvasState extends State<DrawingCanvas>
             ),
             child: Text(
               'Got it! ✨',
-              style: GoogleFonts.nunito(
+              style: AppTextStyle.nunito(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: Colors.white,
@@ -542,7 +542,7 @@ class _DrawingCanvasState extends State<DrawingCanvas>
           padding: const EdgeInsets.only(bottom: 8),
           child: Text(
             '🌈 Draw, Color, & Have Fun! 🎉',
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               fontWeight: FontWeight.bold,
               fontSize: 14,
               color: Colors.purple.shade400,
@@ -601,7 +601,7 @@ class _DrawingCanvasState extends State<DrawingCanvas>
         ),
         Text(
           label,
-          style: GoogleFonts.nunito(
+          style: AppTextStyle.nunito(
             fontSize: 10,
             fontWeight: FontWeight.bold,
             color: Colors.white,

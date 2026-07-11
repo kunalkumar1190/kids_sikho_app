@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 import '../../../core/services/audio_service.dart';
@@ -39,7 +39,7 @@ class _AlphabetPageState extends State<AlphabetPage> {
         appBar: AppBar(
           title: Text(
             "Learn Alphabets",
-            style: GoogleFonts.fredoka(
+            style: AppTextStyle.fredoka(
               color: Colors.white,
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -132,7 +132,7 @@ class _AlphabetPageState extends State<AlphabetPage> {
                                 child: FittedBox(
                                   child: Text(
                                     item['letter'],
-                                    style: GoogleFonts.fredoka(
+                                    style: AppTextStyle.fredoka(
                                       fontSize: 100,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -167,7 +167,7 @@ class _AlphabetPageState extends State<AlphabetPage> {
                                   child: FittedBox(
                                     child: Text(
                                       item['word'],
-                                      style: GoogleFonts.fredoka(
+                                      style: AppTextStyle.fredoka(
                                         fontSize: 32,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white,

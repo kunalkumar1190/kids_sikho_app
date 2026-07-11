@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/services/audio_service.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../core/widgets/language_toggle.dart';
+// import '../../../core/widgets/language_toggle.dart';
 
 class MemoryMatchPage extends StatefulWidget {
   const MemoryMatchPage({super.key});
@@ -128,7 +128,7 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           title: Text(
             "You Win! 🎉",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: AppTheme.primaryColor,
               fontWeight: FontWeight.bold,
               fontSize: 28,
@@ -137,7 +137,7 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
           ).animate().scale(duration: 600.ms, curve: Curves.easeOutBack),
           content: Text(
             "Great job finding all the pairs!",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: AppTheme.textPrimary,
               fontSize: 18,
             ),
@@ -160,7 +160,7 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
                 },
                 child: Text(
                   "Play Again",
-                  style: GoogleFonts.nunito(
+                  style: AppTextStyle.nunito(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -180,7 +180,7 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
       appBar: AppBar(
         title: Text(
           "Memory Match",
-          style: GoogleFonts.nunito(
+          style: AppTextStyle.nunito(
             fontWeight: FontWeight.bold,
             color: AppTheme.textPrimary,
           ),
@@ -210,7 +210,7 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
                     const SizedBox(width: 8),
                     Text(
                       "Matches: $_score / 6",
-                      style: GoogleFonts.nunito(
+                      style: AppTextStyle.nunito(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
                         color: AppTheme.textPrimary,
@@ -317,7 +317,7 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
                                 child: Center(
                                   child: Text(
                                     "?",
-                                    style: GoogleFonts.nunito(
+                                    style: AppTextStyle.nunito(
                                       fontSize: 42,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,

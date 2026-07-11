@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import 'dart:math';
 
 enum LockMode { parent, child }
@@ -48,12 +48,12 @@ Future<bool> showParentLockDialog(BuildContext context,
               children: [
                 Text(
                   "To unlock, please solve:",
-                  style: GoogleFonts.nunito(fontSize: 16),
+                  style: AppTextStyle.nunito(fontSize: 16),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   "$num1 + $num2 = ?",
-                  style: GoogleFonts.nunito(
+                  style: AppTextStyle.nunito(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Colors.blueAccent,

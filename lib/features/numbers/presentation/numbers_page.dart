@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 
 import '../../../core/services/audio_service.dart';
 import '../bloc/numbers_bloc.dart';
@@ -39,7 +39,7 @@ class _NumbersPageState extends State<NumbersPage> {
         appBar: AppBar(
           title: Text(
             "Learn Numbers",
-            style: GoogleFonts.fredoka(
+            style: AppTextStyle.fredoka(
               color: const Color(0xFF4ECDC4),
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -112,7 +112,7 @@ class _NumbersPageState extends State<NumbersPage> {
                                 children: [
                                   Text(
                                     item.number,
-                                    style: GoogleFonts.fredoka(
+                                    style: AppTextStyle.fredoka(
                                       fontSize: 80,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -128,7 +128,7 @@ class _NumbersPageState extends State<NumbersPage> {
                                   const SizedBox(height: 5),
                                   Text(
                                     item.spelling,
-                                    style: GoogleFonts.fredoka(
+                                    style: AppTextStyle.fredoka(
                                       fontSize: 32,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white,

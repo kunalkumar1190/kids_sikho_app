@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'dart:math';
+// import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/services/audio_service.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../core/widgets/language_toggle.dart';
+// import '../../../core/widgets/language_toggle.dart';
 
 class MatchTheFollowingPage extends StatefulWidget {
   const MatchTheFollowingPage({super.key});
@@ -85,7 +85,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           title: Text(
             "How to Play",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: AppTheme.primaryColor,
               fontWeight: FontWeight.bold,
               fontSize: 28,
@@ -112,7 +112,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
                     ),
                     child: Text(
                       "Apple",
-                      style: GoogleFonts.nunito(
+                      style: AppTextStyle.nunito(
                         fontSize: 22,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
               const SizedBox(height: 24),
               Text(
                 "Drag the picture to its matching name!",
-                style: GoogleFonts.nunito(
+                style: AppTextStyle.nunito(
                   color: AppTheme.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -150,7 +150,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
                 },
                 child: Text(
                   "Play!",
-                  style: GoogleFonts.nunito(
+                  style: AppTextStyle.nunito(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -204,7 +204,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           title: Text(
             "Level $_currentLevel Complete! 🎉",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: AppTheme.primaryColor,
               fontWeight: FontWeight.bold,
               fontSize: 26,
@@ -213,7 +213,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
           ).animate().scale(duration: 600.ms, curve: Curves.easeOutBack),
           content: Text(
             "You did an amazing job!",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: AppTheme.textPrimary,
               fontSize: 18,
             ),
@@ -240,7 +240,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
                 },
                 child: Text(
                   "Next Level",
-                  style: GoogleFonts.nunito(
+                  style: AppTextStyle.nunito(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -266,7 +266,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           title: Text(
             "Champion! 🏆",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: AppTheme.accentColor,
               fontWeight: FontWeight.bold,
               fontSize: 32,
@@ -275,7 +275,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
           ).animate(),
           content: Text(
             "You finished all 3 levels. Great brain work!",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: AppTheme.textPrimary,
               fontSize: 18,
             ),
@@ -302,7 +302,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
                 },
                 child: Text(
                   "Play Again",
-                  style: GoogleFonts.nunito(
+                  style: AppTextStyle.nunito(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -323,7 +323,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
       appBar: AppBar(
         title: Text(
           "Match It!",
-          style: GoogleFonts.nunito(
+          style: AppTextStyle.nunito(
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -402,7 +402,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
         children: [
           Text(
             "Level: $_currentLevel",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               fontSize: 22,
               fontWeight: FontWeight.bold,
               color: AppTheme.primaryColor,
@@ -415,7 +415,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
           ),
           Text(
             "Round: $_currentRound/4",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               fontSize: 22,
               fontWeight: FontWeight.bold,
               color: AppTheme.secondaryColor,
@@ -552,7 +552,7 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
           child: Center(
             child: Text(
               word,
-              style: GoogleFonts.nunito(
+              style: AppTextStyle.nunito(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: isMatched

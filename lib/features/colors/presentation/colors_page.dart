@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 
 import '../../../core/services/audio_service.dart';
 import '../bloc/colors_bloc.dart';
@@ -38,7 +38,7 @@ class _ColorsPageState extends State<ColorsPage> {
         appBar: AppBar(
           title: Text(
             "Learn Colors",
-            style: GoogleFonts.fredoka(
+            style: AppTextStyle.fredoka(
               color: Colors.pink,
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ class _ColorsPageState extends State<ColorsPage> {
                             ),
                             Text(
                               item.name,
-                              style: GoogleFonts.fredoka(
+                              style: AppTextStyle.fredoka(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,

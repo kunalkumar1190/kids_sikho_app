@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import '../bloc/stories_bloc.dart';
 import '../data/models/story_model.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import '../../../core/settings/settings_cubit.dart';
 import '../../../core/widgets/language_toggle.dart';
 
@@ -19,7 +19,7 @@ class StoriesPage extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             'Magical Stories',
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -124,7 +124,7 @@ class StoryCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               isEnglish ? story.titleEn : story.titleHi,
-                              style: GoogleFonts.nunito(
+                              style: AppTextStyle.nunito(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.indigo,
@@ -138,7 +138,7 @@ class StoryCard extends StatelessWidget {
                         child: SingleChildScrollView(
                           child: Text(
                             isEnglish ? story.contentEn : story.contentHi,
-                            style: GoogleFonts.nunito(
+                            style: AppTextStyle.nunito(
                               fontSize: 20,
                               height: 1.5,
                               color: Colors.black87,
@@ -166,7 +166,7 @@ class StoryCard extends StatelessWidget {
                                 ),
                                 label: Text(
                                   isPlaying ? 'Stop' : 'Listen',
-                                  style: GoogleFonts.nunito(
+                                  style: AppTextStyle.nunito(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                   ),

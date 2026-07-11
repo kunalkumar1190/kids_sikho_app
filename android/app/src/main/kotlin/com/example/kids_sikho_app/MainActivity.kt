@@ -1,4 +1,4 @@
-package com.example.kids_sikho_app
+package com.example.sikho_basic
 
 import io.flutter.embedding.android.FlutterActivity
 

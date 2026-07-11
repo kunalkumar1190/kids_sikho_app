@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/services/audio_service.dart';
 
@@ -110,7 +110,7 @@ class _BalloonPopPageState extends State<BalloonPopPage> {
       appBar: AppBar(
         title: Text(
           "Balloon Pop",
-          style: GoogleFonts.nunito(
+          style: AppTextStyle.nunito(
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -152,7 +152,7 @@ class _BalloonPopPageState extends State<BalloonPopPage> {
               ),
               child: Text(
                 "Score: $_score",
-                style: GoogleFonts.fredoka(
+                style: AppTextStyle.fredoka(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.orange,

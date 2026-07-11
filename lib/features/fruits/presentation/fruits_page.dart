@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 
 import '../../../core/services/audio_service.dart';
 import '../bloc/fruits_bloc.dart';
@@ -38,7 +38,7 @@ class _FruitsPageState extends State<FruitsPage> {
         appBar: AppBar(
           title: Text(
             "Learn Fruits",
-            style: GoogleFonts.fredoka(
+            style: AppTextStyle.fredoka(
               color: Colors.red,
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -103,7 +103,7 @@ class _FruitsPageState extends State<FruitsPage> {
                                 const SizedBox(height: 10),
                                 Text(
                                   item.name,
-                                  style: GoogleFonts.fredoka(
+                                  style: AppTextStyle.fredoka(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

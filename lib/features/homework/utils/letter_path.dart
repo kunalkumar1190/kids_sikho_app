@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 
 class TracingMask {
   final Set<int> inkPixels; // Stores flattened index: y * width + x
@@ -46,7 +46,7 @@ class LetterPathUtil {
     final textPainter = TextPainter(
       text: TextSpan(
         text: text,
-        style: GoogleFonts.nunito(
+        style: AppTextStyle.nunito(
           fontSize: size.height * 0.8,
           fontWeight: FontWeight.w900,
           color: Colors.black, // Opaque color for mask

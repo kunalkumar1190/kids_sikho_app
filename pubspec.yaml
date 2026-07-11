@@ -1,4 +1,4 @@
-name: kids_sikho_app
+name: sikho_basic
 description: "A new Flutter project."
 publish_to: 'none' 
 
@@ -13,13 +13,14 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bloc: ^9.1.1
   go_router: ^17.3.0
-  google_fonts: ^8.1.0
+  # google_fonts: ^8.1.0
   flutter_animate: ^4.5.2
   shared_preferences: ^2.5.5
   flutter_tts: ^4.2.5
   flutter_card_swiper: ^7.2.0
   flutter_colorpicker: ^1.1.0
   in_app_update: ^4.2.5
+  
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +34,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.15.0
   flutter_gen_runner: ^5.14.1
+  flutter_native_splash: ^2.4.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -50,6 +52,7 @@ flutter:
     - assets/data/
     - assets/icons/
     - assets/images/
+    - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -73,6 +76,25 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/nunito/Nunito-Regular.ttf
+        - asset: assets/fonts/nunito/Nunito-Bold.ttf
+          weight: 700
+    - family: Fredoka
+      fonts:
+        - asset: assets/fonts/fredoka/Fredoka-Regular.ttf
+        - asset: assets/fonts/fredoka/Fredoka-Bold.ttf
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_native_splash:
+  color: "#fed503"
+  image: "assets/icons/logo.png"
+  android_12:
+    image: "assets/icons/logo.png"
+    icon_background_color: "#fed503"

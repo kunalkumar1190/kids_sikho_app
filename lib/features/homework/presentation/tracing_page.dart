@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
@@ -103,7 +103,7 @@ class _TracingPageState extends State<TracingPage>
       SnackBar(
         content: Text(
           message,
-          style: GoogleFonts.nunito(fontWeight: FontWeight.bold),
+          style: AppTextStyle.nunito(fontWeight: FontWeight.bold),
         ),
         backgroundColor: color,
         behavior: SnackBarBehavior.floating,
@@ -135,7 +135,7 @@ class _TracingPageState extends State<TracingPage>
       appBar: AppBar(
         title: Text(
           "Homework",
-          style: GoogleFonts.nunito(
+          style: AppTextStyle.nunito(
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 24,
@@ -175,11 +175,11 @@ class _TracingPageState extends State<TracingPage>
                     Text(
                       "${state.result.percentage.toInt()}% Accuracy",
                       style:
-                          GoogleFonts.nunito(fontSize: 20, color: Colors.grey),
+                          AppTextStyle.nunito(fontSize: 20, color: Colors.grey),
                     ),
                     Text(
                       state.result.message,
-                      style: GoogleFonts.fredoka(
+                      style: AppTextStyle.fredoka(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                         color: state.result.color,
@@ -199,7 +199,7 @@ class _TracingPageState extends State<TracingPage>
                         homeworkBloc.add(NextHomeworkEvent());
                       },
                       child: Text("Next!",
-                          style: GoogleFonts.nunito(
+                          style: AppTextStyle.nunito(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
@@ -225,7 +225,7 @@ class _TracingPageState extends State<TracingPage>
                   const SizedBox(height: 20),
                   Text(
                     "Loading Tracing Guide...",
-                    style: GoogleFonts.nunito(
+                    style: AppTextStyle.nunito(
                         fontSize: 18, color: Colors.blueAccent),
                   ),
                 ],
@@ -284,7 +284,7 @@ class _TracingPageState extends State<TracingPage>
                     const SizedBox(width: 8),
                     Text(
                       "Trace: ",
-                      style: GoogleFonts.nunito(
+                      style: AppTextStyle.nunito(
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
                         color: Colors.blue.shade800,
@@ -292,7 +292,7 @@ class _TracingPageState extends State<TracingPage>
                     ),
                     Text(
                       currentItem!.symbol,
-                      style: GoogleFonts.fredoka(
+                      style: AppTextStyle.fredoka(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue.shade900,
@@ -458,7 +458,7 @@ class _TracingPageState extends State<TracingPage>
                               icon: const Icon(Icons.check_circle, size: 28),
                               label: Text(
                                 isSuccess ? "✅ Done!" : "Check!",
-                                style: GoogleFonts.nunito(
+                                style: AppTextStyle.nunito(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
                                 ),

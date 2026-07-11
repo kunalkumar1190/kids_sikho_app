@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import '../settings/settings_cubit.dart';
 
 class LanguageToggleWidget extends StatelessWidget {
@@ -52,7 +52,7 @@ class LanguageToggleWidget extends StatelessWidget {
                     child: Center(
                       child: Text(
                         isHindi ? "अ" : "A",
-                        style: GoogleFonts.nunito(
+                        style: AppTextStyle.nunito(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: isHindi ? const Color(0xFFFF9933) : const Color(0xFF1976D2),

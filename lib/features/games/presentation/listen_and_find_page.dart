@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/services/audio_service.dart';
@@ -79,7 +79,7 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           title: Text(
             "Choose Language\nभाषा चुनें",
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               color: Colors.orangeAccent,
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -123,7 +123,7 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
         child: Center(
           child: Text(
             title,
-            style: GoogleFonts.nunito(
+            style: AppTextStyle.nunito(
               fontSize: 22,
               fontWeight: FontWeight.bold,
               color: color,
@@ -214,7 +214,7 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
       appBar: AppBar(
         title: Text(
           "Listen & Find",
-          style: GoogleFonts.nunito(
+          style: AppTextStyle.nunito(
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -244,7 +244,7 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
               children: [
                 Text(
                   "Score: $_score",
-                  style: GoogleFonts.fredoka(
+                  style: AppTextStyle.fredoka(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: Colors.orange,
@@ -333,7 +333,7 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
               padding: const EdgeInsets.only(bottom: 40.0),
               child: Text(
                 "Awesome! 🎉",
-                style: GoogleFonts.fredoka(
+                style: AppTextStyle.fredoka(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                   color: Colors.green,

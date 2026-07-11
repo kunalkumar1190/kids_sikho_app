@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sikho_basic/core/theme/app_text_style.dart';
 
 import '../../../app/routes/app_router.dart';
 import '../../home/widgets/glass_card.dart';
@@ -15,7 +15,7 @@ class GamesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Fun Games",
-          style: GoogleFonts.fredoka(
+          style: AppTextStyle.fredoka(
             color: Colors.pinkAccent,
             fontSize: 28,
             fontWeight: FontWeight.bold,
@@ -33,7 +33,7 @@ class GamesPage extends StatelessWidget {
           children: [
             Text(
               "Choose a game to play!",
-              style: GoogleFonts.nunito(
+              style: AppTextStyle.nunito(
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
                 color: Colors.blueGrey,
@@ -134,7 +134,7 @@ class GamesPage extends StatelessWidget {
                 child: Center(
                   child: Text(
                     title,
-                    style: GoogleFonts.fredoka(
+                    style: AppTextStyle.fredoka(
                       fontSize: 18,
                       color: color,
                       fontWeight: FontWeight.bold,
