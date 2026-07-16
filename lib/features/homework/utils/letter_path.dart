@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:seekho_basic/core/theme/app_text_style.dart';
+import 'package:anganwadikids/core/theme/app_text_style.dart';
 
 class TracingMask {
   final Set<int> inkPixels; // Stores flattened index: y * width + x

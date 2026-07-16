@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:seekho_basic/core/theme/app_text_style.dart';
-import 'package:seekho_basic/app/routes/app_router.dart';
-import 'package:seekho_basic/features/home/widgets/glass_card.dart';
-import 'package:seekho_basic/gen/assets.gen.dart';
+import 'package:anganwadikids/core/theme/app_text_style.dart';
+import 'package:anganwadikids/app/routes/app_router.dart';
+import 'package:anganwadikids/features/home/widgets/glass_card.dart';
+import 'package:anganwadikids/gen/assets.gen.dart';
 import '../../../core/settings/settings_cubit.dart';
 import '../../../core/widgets/language_toggle.dart';
 
@@ -74,15 +74,15 @@ class HomePage extends StatelessWidget {
       textColor: const Color(0xFFD32F2F),
       path: Routes.stories,
     ),
-    HomeMenuItem(
-      title: "Songs",
-      assetImage: Assets.icons.audio,
-      emoji: "🎵",
-      lightColor: const Color(0xFFFFF9C4),
-      mainColor: const Color(0xFFFFD54F),
-      textColor: const Color(0xFFF57F17),
-      path: "",
-    ),
+    // HomeMenuItem(
+    //   title: "Songs",
+    //   assetImage: Assets.icons.audio,
+    //   emoji: "🎵",
+    //   lightColor: const Color(0xFFFFF9C4),
+    //   mainColor: const Color(0xFFFFD54F),
+    //   textColor: const Color(0xFFF57F17),
+    //   path: "",
+    // ),
     HomeMenuItem(
       title: "Drawing",
       assetImage: Assets.icons.drawing,
@@ -223,7 +223,7 @@ class HomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Seekho ",
+              "Anganwadi ",
               style: AppTextStyle.fredoka(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -238,7 +238,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Text(
-              "Basic",
+              "Kids",
               style: AppTextStyle.fredoka(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,

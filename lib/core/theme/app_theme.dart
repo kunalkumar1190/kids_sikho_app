@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seekho_basic/core/theme/app_text_style.dart';
+import 'package:anganwadikids/core/theme/app_text_style.dart';
 
 class AppTheme {
   // Bright Kid-Friendly Colors

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import '../bloc/stories_bloc.dart';
 import '../data/models/story_model.dart';
-import 'package:seekho_basic/core/theme/app_text_style.dart';
+import 'package:anganwadikids/core/theme/app_text_style.dart';
 import '../../../core/settings/settings_cubit.dart';
 import '../../../core/widgets/language_toggle.dart';
 

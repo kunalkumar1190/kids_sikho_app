@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seekho_basic/core/theme/app_text_style.dart';
+import 'package:anganwadikids/core/theme/app_text_style.dart';
 import '../settings/settings_cubit.dart';
 
 class LanguageToggleWidget extends StatelessWidget {

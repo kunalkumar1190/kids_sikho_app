@@ -1,4 +1,4 @@
-package com.seekhobasic.app
+package com.anganwadikids.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seekho_basic/core/theme/app_text_style.dart';
+import 'package:anganwadikids/core/theme/app_text_style.dart';
 
 import '../../../core/services/audio_service.dart';
 import '../bloc/fruits_bloc.dart';

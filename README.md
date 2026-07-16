@@ -1,5 +1,5 @@
 # Kids seekho (Kids Learning App)
-//seekhoBasics
+//anganwadikidss
 
 
 A fun, interactive, and beautifully designed Flutter application to help preschoolers and young kids learn basic educational concepts in an engaging way. The app includes alphabets, numbers, colors, shapes, storytelling, interactive games, and drawing/tracing tools.
@@ -48,7 +48,7 @@ A fun, interactive, and beautifully designed Flutter application to help prescho
 
 2. **Navigate to the project directory**:
    ```bash
-   cd seekho_basic
+   cd anganwadikids
    ```
 
 3. **Install dependencies**:
