@@ -43,6 +43,7 @@ class LetterPathUtil {
     final recorder = ui.PictureRecorder();
     final canvas =
         Canvas(recorder, Rect.fromLTWH(0, 0, size.width, size.height));
+    canvas.drawColor(Colors.transparent, BlendMode.clear);
 
     final textPainter = TextPainter(
       text: TextSpan(
@@ -51,6 +52,7 @@ class LetterPathUtil {
           fontSize: size.height * 0.8,
           fontWeight: FontWeight.w900,
           color: Colors.black, // Opaque color for mask
+          height: 1.0, // Match HintTextPainter
         ),
       ),
       textDirection: TextDirection.ltr,

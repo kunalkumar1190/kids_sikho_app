@@ -19,6 +19,7 @@ dependencies:
   flutter_card_swiper: ^7.2.0
   flutter_colorpicker: ^1.1.0
   in_app_update: ^4.2.5
+  flutter_native_splash: ^2.4.7
   
 
 dev_dependencies:
@@ -33,7 +34,6 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.15.0
   flutter_gen_runner: ^5.14.1
-  flutter_native_splash: ^2.4.7
   rename: ^3.1.0
 
 # For information on the generic Dart part of this file, see the
@@ -94,11 +94,7 @@ flutter:
 
 flutter_native_splash:
   color: "#fed503"
-  color_dark: "#fed503"
   image: "assets/icons/logo.png"
   android_12:
-    color: "#fed503"
-    color_dark: "#fed503"
     image: "assets/icons/logo.png"
     icon_background_color: "#fed503"
-    icon_background_color_dark: "#fed503"

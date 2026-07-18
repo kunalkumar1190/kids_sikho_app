@@ -305,20 +305,24 @@ class _TracingPageState extends State<TracingPage>
               // Canvas
               Expanded(
                 child: LayoutBuilder(builder: (context, constraints) {
-                  final size =
-                      Size(constraints.maxWidth, constraints.maxHeight);
+                  final innerWidth =
+                      constraints.maxWidth - 48; // 24 margin on each side
+                  final innerHeight = constraints.maxHeight - 48;
+                  final innerSize = Size(innerWidth, innerHeight);
 
                   // Generate mask lazily when size is known
                   if (!_drawingController.isReady) {
                     if (!_isPreparing) {
                       _isPreparing = true;
-                      _prepareMask(currentItem!, size);
+                      _prepareMask(currentItem!, innerSize);
                     }
                     return const Center(child: CircularProgressIndicator());
                   }
 
                   return Container(
                     margin: const EdgeInsets.all(24),
+                    width: innerWidth,
+                    height: innerHeight,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(40),
@@ -339,14 +343,14 @@ class _TracingPageState extends State<TracingPage>
                         children: [
                           // 1. Dotted Background
                           CustomPaint(
-                            size: size,
+                            size: innerSize,
                             painter: HintTextPainter(text: currentItem!.symbol),
                           ),
 
                           // 2. Hint Animation
                           if (_showHint)
                             HintAnimation(
-                              size: size,
+                              size: innerSize,
                               onComplete: () {
                                 if (mounted) {
                                   setState(() => _showHint = false);
@@ -366,9 +370,11 @@ class _TracingPageState extends State<TracingPage>
                               _drawingController.endStroke();
                             },
                             child: Container(
+                              width: innerWidth,
+                              height: innerHeight,
                               color: Colors.transparent, // Capture gestures
                               child: CustomPaint(
-                                size: size,
+                                size: innerSize,
                                 painter: TracingPainter(
                                     strokes: _drawingController.strokes),
                               ),

@@ -34,7 +34,7 @@ class StoriesBloc extends Bloc<StoriesEvent, StoriesState> {
   }
 
   Future<void> _onPlayStory(PlayStoryEvent event, Emitter<StoriesState> emit) async {
-    emit(state.copyWith(ttsState: TtsState.playing));
+    emit(state.copyWith(ttsState: TtsState.playing, currentStory: event.story));
     await _audioService.speak(event.textToSpeak, languageCode: event.languageCode);
   }
 
