@@ -58,6 +58,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/story.png
   String get story => 'assets/icons/story.png';
 
+  /// File path: assets/icons/commonstory.jpg
+  String get commonstory => 'assets/icons/commonstory.jpg';
+
   /// List of all assets
   List<String> get values => [
         alphabet,
@@ -70,7 +73,8 @@ class $AssetsIconsGen {
         quiz,
         robot,
         star,
-        story
+        story,
+        commonstory,
       ];
 }
 

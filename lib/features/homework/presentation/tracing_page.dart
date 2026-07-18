@@ -418,18 +418,14 @@ class _TracingPageState extends State<TracingPage>
                     const SizedBox(width: 12),
                     // Next/Skip Button (With Text)
                     ElevatedButton.icon(
-                      onPressed: isSuccess
-                          ? null
-                          : () async {
-                              final unlocked = await showParentLockDialog(
-                                  context,
-                                  mode: LockMode.child);
-                              if (unlocked == true && context.mounted) {
-                                context
-                                    .read<HomeworkBloc>()
-                                    .add(NextHomeworkEvent());
-                              }
-                            },
+                      onPressed: () {
+                        // final unlocked = await showParentLockDialog(
+                        //     context,
+                        //     mode: LockMode.child);
+                        // if (unlocked == true && context.mounted) {
+                        context.read<HomeworkBloc>().add(NextHomeworkEvent());
+                        // }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orangeAccent,
                         foregroundColor: Colors.white,
@@ -445,39 +441,39 @@ class _TracingPageState extends State<TracingPage>
                     ),
                     const SizedBox(width: 16),
                     // Check Button (Expanded)
-                    Expanded(
-                      child: AnimatedBuilder(
-                        animation: _pulseController,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: 1.0 + 0.03 * _pulseController.value,
-                            child: ElevatedButton.icon(
-                              onPressed: isSuccess
-                                  ? null
-                                  : () => _checkDrawing(currentItem!),
-                              icon: const Icon(Icons.check_circle, size: 28),
-                              label: Text(
-                                isSuccess ? "✅ Done!" : "Check!",
-                                style: AppTextStyle.nunito(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: isSuccess
-                                    ? Colors.green.shade400
-                                    : Colors.blueAccent,
-                                foregroundColor: Colors.white,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25)),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: AnimatedBuilder(
+                    //     animation: _pulseController,
+                    //     builder: (context, child) {
+                    //       return Transform.scale(
+                    //         scale: 1.0 + 0.03 * _pulseController.value,
+                    //         child: ElevatedButton.icon(
+                    //           onPressed: isSuccess
+                    //               ? null
+                    //               : () => _checkDrawing(currentItem!),
+                    //           icon: const Icon(Icons.check_circle, size: 28),
+                    //           label: Text(
+                    //             isSuccess ? "✅ Done!" : "Check!",
+                    //             style: AppTextStyle.nunito(
+                    //               fontWeight: FontWeight.bold,
+                    //               fontSize: 20,
+                    //             ),
+                    //           ),
+                    //           style: ElevatedButton.styleFrom(
+                    //             backgroundColor: isSuccess
+                    //                 ? Colors.green.shade400
+                    //                 : Colors.blueAccent,
+                    //             foregroundColor: Colors.white,
+                    //             padding:
+                    //                 const EdgeInsets.symmetric(vertical: 16),
+                    //             shape: RoundedRectangleBorder(
+                    //                 borderRadius: BorderRadius.circular(25)),
+                    //           ),
+                    //         ),
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

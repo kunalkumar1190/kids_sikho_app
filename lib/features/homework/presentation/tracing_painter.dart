@@ -1,4 +1,5 @@
 import 'dart:ui' as ui;
+import 'package:anganwadikids/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 import '../../drawing/data/models/drawing_point.dart';
 
@@ -44,11 +45,10 @@ class HintTextPainter extends CustomPainter {
     final textPainter = TextPainter(
       text: TextSpan(
         text: text,
-        style: TextStyle(
-          fontFamily: 'Nunito',
+        style: AppTextStyle.nunito(
           fontSize: size.height * 0.8,
           fontWeight: FontWeight.w900,
-          color: Colors.grey.withOpacity(0.15),
+          color: Colors.grey.withValues(alpha: 0.15),
           height: 1.0,
         ),
       ),

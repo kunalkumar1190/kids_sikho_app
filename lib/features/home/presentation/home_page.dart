@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Stories",
-      assetImage: Assets.icons.story,
+      assetImage: Assets.icons.commonstory,
       emoji: "📖",
       lightColor: const Color(0xFFFFCDD2),
       mainColor: const Color(0xFFE57373),
@@ -318,13 +318,15 @@ class HomePage extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: menus.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 15,
-        mainAxisSpacing: 15,
-        childAspectRatio: 0.9,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: MediaQuery.of(context).size.width >= 800 ? 3 : 2,
+        crossAxisSpacing: MediaQuery.of(context).size.width >= 800 ? 20 : 15,
+        mainAxisSpacing: MediaQuery.of(context).size.width >= 800 ? 20 : 15,
+        childAspectRatio:
+            MediaQuery.of(context).size.width >= 1200 ? 0.85 : 0.9,
       ),
       itemBuilder: (context, index) {
+        final screenWidth = MediaQuery.of(context).size.width;
         final item = menus[index];
 
         return InkWell(
@@ -340,7 +342,7 @@ class HomePage extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
-              color: item.mainColor, // Solid color block instead of gradient
+              color: item.mainColor,
               borderRadius: BorderRadius.circular(25),
               boxShadow: [
                 BoxShadow(
@@ -355,7 +357,7 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: GlassCard(
-                    width: 180,
+                    width: double.infinity,
                     borderRadius: 20,
                     child: Center(
                       child: item.assetImage != null
@@ -365,7 +367,9 @@ class HomePage extends StatelessWidget {
                             )
                           : Text(
                               item.emoji ?? "✨",
-                              style: const TextStyle(fontSize: 70),
+                              style: TextStyle(
+                                fontSize: screenWidth >= 800 ? 90 : 70,
+                              ),
                             ),
                     ),
                   ),
@@ -380,11 +384,15 @@ class HomePage extends StatelessWidget {
                         bottom: Radius.circular(25),
                       ),
                     ),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Center(
                       child: Text(
                         item.title,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: AppTextStyle.fredoka(
-                          fontSize: 18,
+                          fontSize: screenWidth >= 800 ? 20 : 18,
                           color: item.textColor,
                           fontWeight: FontWeight.bold,
                         ),

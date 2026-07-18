@@ -46,5 +46,197 @@
     "content_en": "A woodcutter dropped his axe into a river. A fairy gave him a golden axe. He said, 'It is not mine.' The fairy gave him his own axe and rewarded his honesty.\n\n Moral: Honesty is the best policy.",
     "content_hi": "एक लकड़हारे की कुल्हाड़ी नदी में गिर गई। एक परी सोने की कुल्हाड़ी लाई। उसने कहा, 'यह मेरी नहीं है।' परी ने उसकी असली कुल्हाड़ी लौटाई और उसकी ईमानदारी का इनाम दिया।\n\n सीख: ईमानदारी सबसे अच्छी नीति है।",
     "imageUrl": "assets/images/woodcutter.png"
+  },
+  {
+    "id": 7,
+    "title_en": "The Clever Fox and the Stork",
+    "title_hi": "चालाक लोमड़ी और सारस",
+    "content_en": "A fox invited a stork for dinner. He served soup in a flat dish. The stork could not eat. The stork invited the fox next day. She served soup in a tall jar. The fox could not eat. \n\n Moral: Do not play tricks on others.",
+    "content_hi": "एक लोमड़ी ने सारस को खाने पर बुलाया। उसने सूप एक सपाट बर्तन में परोसा। सारस खा नहीं सका। अगले दिन सारस ने लोमड़ी को बुलाया। उसने सूप एक लंबे जार में परोसा। लोमड़ी खा नहीं सकी।\n\n सीख: दूसरों पर चाल मत चलो।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 8,
+    "title_en": "The Ant and the Grasshopper",
+    "title_hi": "चींटी और टिड्डा",
+    "content_en": "An ant worked hard all summer. A grasshopper played and sang. Winter came. The ant had food to eat. The grasshopper had nothing. \n\n Moral: Work today to enjoy tomorrow.",
+    "content_hi": "एक चींटी ने सारी गर्मी मेहनत की। एक टिड्डा खेला और गाया। सर्दी आई। चींटी के पास खाना था। टिड्डे के पास कुछ नहीं था।\n\n सीख: आज मेहनत करो, कल मजा करो।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 9,
+    "title_en": "The Boy Who Cried Wolf",
+    "title_hi": "भेड़िया आया भेड़िया आया",
+    "content_en": "A shepherd boy always shouted, \"Wolf! Wolf!\" The villagers came to help. There was no wolf. One day a real wolf came. The boy shouted. Nobody came. The wolf ate all his sheep.\n\n Moral: Do not lie. Nobody trusts a liar.",
+    "content_hi": "एक ग्वाला बालक हमेशा चिल्लाता, \"भेड़िया! भेड़िया!\" गाँव वाले मदद को आते। कोई भेड़िया नहीं होता। एक दिन सच में भेड़िया आया। लड़के ने चिल्लाया। कोई नहीं आया। भेड़िये ने सारी भेड़ें खा लीं।\n\n सीख: झूठ मत बोलो। कोई झूठे पर भरोसा नहीं करता।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 10,
+    "title_en": "The Golden Touch",
+    "title_hi": "सोने का स्पर्श",
+    "content_en": "King Midas loved gold. He wished everything he touched would turn to gold. His wish was granted. He touched his food, it became gold. He touched his daughter, she became a gold statue. He learned his lesson.\n\n Moral: Greed is bad. Love is more precious than gold.",
+    "content_hi": "राजा मिडास को सोना बहुत पसंद था। उसने इच्छा की कि वह जो भी छुए, सोना हो जाए। उसकी इच्छा पूरी हुई। उसने खाना छुआ, वह सोना हो गया। उसने अपनी बेटी को छुआ, वह सोने की मूर्ति बन गई। उसे अपनी गलती समझ आई।\n\n सीख: लालच बुरा है। प्यार सोने से भी कीमती है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 11,
+    "title_en": "The Two Friends and the Bear",
+    "title_hi": "दो दोस्त और भालू",
+    "content_en": "Two friends were walking in a forest. A bear came. One friend climbed a tree. The other lay on the ground and pretended to be dead. The bear sniffed and went away. \n\n Moral: A true friend helps in need. A friend in need is a friend indeed.",
+    "content_hi": "दो दोस्त जंगल में घूम रहे थे। एक भालू आया। एक दोस्त पेड़ पर चढ़ गया। दूसरा जमीन पर लेट गया और मरा हुआ होने का नाटक किया। भालू ने सूंघा और चला गया।\n\n सीख: सच्चा दोस्त मुश्किल में काम आता है। विपत्ति की कसौटी पर ही सच्चे मित्र की पहचान होती है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 12,
+    "title_en": "The Wind and the Sun",
+    "title_hi": "हवा और सूरज",
+    "content_en": "The wind and the sun argued who was stronger. They saw a man with a coat. The wind blew hard, but the man held his coat tighter. The sun shone brightly, and the man took off his coat. \n\n Moral: Kindness and gentleness are stronger than force.",
+    "content_hi": "हवा और सूरज में बहस हुई कि कौन ज्यादा ताकतवर है। उन्होंने एक आदमी को कोट पहने देखा। हवा ने जोर से उड़ाया, लेकिन आदमी ने कोट और कसकर पकड़ लिया। सूरज ने तेज चमकाया, आदमी ने कोट उतार दिया।\n\n सीख: दयालुता और नम्रता, बल से अधिक शक्तिशाली हैं।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 13,
+    "title_en": "The Monkey and the Crocodile",
+    "title_hi": "बंदर और मगरमच्छ",
+    "content_en": "A monkey shared juicy fruits with a crocodile. The crocodile's wife wanted the monkey's heart. The crocodile invited the monkey. The monkey cleverly said, 'I left my heart on the tree.' He escaped. \n\n Moral: Presence of mind can save you.",
+    "content_hi": "एक बंदर मगरमच्छ को रसीले फल देता था। मगरमच्छ की पत्नी को बंदर का दिल चाहिए था। मगरमच्छ ने बंदर को बुलाया। बंदर ने चालाकी से कहा, 'मेरा दिल पेड़ पर रह गया।' वह बच गया।\n\n सीख: सूझबूझ से बड़ी से बड़ी मुसीबत से बचा जा सकता है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 14,
+    "title_en": "The Elephant and the Ant",
+    "title_hi": "हाथी और चींटी",
+    "content_en": "A big elephant was proud of his size. He laughed at a tiny ant. The ant bit the elephant's trunk. The elephant jumped in pain. The ant said, 'Size does not matter. Every one has strength.'\n\n Moral: Do not underestimate anyone. Everyone has their own strength.",
+    "content_hi": "एक बड़ा हाथी अपने आकार पर घमंड करता था। वह एक छोटी चींटी पर हँसता था। चींटी ने हाथी की सूंड में काट लिया। हाथी दर्द से उछल पड़ा। चींटी ने कहा, 'आकार मायने नहीं रखता। सबके पास अपनी ताकत होती है।'\n\n सीख: किसी को छोटा मत समझो। सबकी अपनी ताकत होती है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 15,
+    "title_en": "The Peacock and the Crane",
+    "title_hi": "मोर और क्रौंच",
+    "content_en": "A peacock said to a crane, 'Look at my beautiful colors. You have no colors.' The crane replied, 'I can fly high in the sky. You cannot fly. Beauty is not everything.'\n\n Moral: Everyone has their own unique qualities. Be proud of who you are.",
+    "content_hi": "एक मोर ने क्रौंच से कहा, 'मेरे सुंदर रंगों को देखो। तुममें कोई रंग नहीं।' क्रौंच ने उत्तर दिया, 'मैं आसमान में ऊँचा उड़ सकता हूँ। तुम नहीं उड़ सकते। सुंदरता ही सब कुछ नहीं है।'\n\n सीख: हर किसी की अपनी खूबियाँ होती हैं। जो हो, उस पर गर्व करो।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 16,
+    "title_en": "The Frogs and the Ox",
+    "title_hi": "मेंढक और बैल",
+    "content_en": "A frog saw a big ox. He told his father about it. The father blew himself up and asked, 'Am I as big as the ox?' He kept blowing until he burst. \n\n Moral: Do not try to be what you are not.",
+    "content_hi": "एक मेंढक ने एक बड़ा बैल देखा। उसने अपने पिता को बताया। पिता ने अपने आप को फुलाया और पूछा, 'क्या मैं बैल जितना बड़ा हूँ?' वह फूलता रहा और फट गया।\n\n सीख: जो नहीं हो, वह बनने की कोशिश मत करो।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 17,
+    "title_en": "The Crow and the Pitcher (Greek)",
+    "title_hi": "कौआ और घड़ा (ग्रीक)",
+    "content_en": "A thirsty crow found a pitcher with little water. He could not reach it. He dropped pebbles one by one. The water level rose. He drank and quenched his thirst. \n\n Moral: Patience and hard work can solve any problem.",
+    "content_hi": "एक प्यासे कौए को घड़ा मिला जिसमें थोड़ा पानी था। वह उस तक नहीं पहुँच सका। उसने एक-एक करके कंकड़ डाले। पानी का स्तर बढ़ गया। उसने पानी पिया और प्यास बुझाई।\n\n सीख: धैर्य और मेहनत से हर समस्या हल हो सकती है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 18,
+    "title_en": "The Fox and the Goat",
+    "title_hi": "लोमड़ी और बकरी",
+    "content_en": "A fox fell into a well. A goat came there. The fox said, 'The water is sweet, jump in.' The goat jumped. The fox climbed on the goat's back and got out. The goat was stuck.\n\n Moral: Think before you act. Do not trust strangers easily.",
+    "content_hi": "एक लोमड़ी कुएँ में गिर गई। एक बकरी वहाँ आई। लोमड़ी ने कहा, 'पानी बहुत मीठा है, अंदर आओ।' बकरी ने छलांग लगाई। लोमड़ी बकरी की पीठ पर चढ़कर बाहर निकल गई। बकरी फँस गई।\n\n सीख: कुछ भी करने से पहले सोचो। अजनबियों पर आसानी से भरोसा मत करो।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 19,
+    "title_en": "The Bird with Two Heads (Indian)",
+    "title_hi": "दो सिर वाला पक्षी (भारतीय)",
+    "content_en": "A bird had two heads. One head ate a sweet fruit. The other head could not taste it. It got angry and ate a poisonous fruit. Both died. \n\n Moral: Share things with others. Selfishness destroys everyone.",
+    "content_hi": "एक पक्षी के दो सिर थे। एक सिर ने मीठा फल खाया। दूसरा सिर उसका स्वाद नहीं ले सका। उसे गुस्सा आया और उसने जहरीला फल खा लिया। दोनों मर गए।\n\n सीख: दूसरों के साथ बाँटो। स्वार्थ सबको नष्ट कर देता है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 20,
+    "title_en": "The Kind Rabbit (Indian)",
+    "title_hi": "दयालु खरगोश (भारतीय)",
+    "content_en": "A rabbit was hungry. He found a sweet potato but gave it to a squirrel who had none. Later, the squirrel shared nuts with the rabbit. \n\n Moral: Sharing brings happiness.",
+    "content_hi": "एक खरगोश भूखा था। उसे शकरकंद मिला लेकिन उसने उसे एक गिलहरी को दे दिया जिसके पास कुछ नहीं था। बाद में, गिलहरी ने खरगोश के साथ मेवे बाँटे।\n\n सीख: बाँटने से खुशी मिलती है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 21,
+    "title_en": "The Caterpillar and the Butterfly",
+    "title_hi": "इल्ली और तितली",
+    "content_en": "A caterpillar felt sad as it was slow. It made a cocoon. After many days, it came out as a beautiful butterfly. \n\n Moral: Change is beautiful. Patience leads to wonderful results.",
+    "content_hi": "एक इल्ली धीमी होने के कारण दुखी थी। उसने कोकून बनाया। कई दिनों बाद, वह एक सुंदर तितली बनकर निकली।\n\n सीख: बदलाव सुंदर होता है। धैर्य से अद्भुत परिणाम मिलते हैं।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 22,
+    "title_en": "The Helpful Starfish",
+    "title_hi": "सहायक तारामछली",
+    "content_en": "A boy saw many starfish on the shore. He threw them back into the sea one by one. A man said, 'You cannot save all.' The boy said, 'I saved this one.' \n\n Moral: Every small help matters.",
+    "content_hi": "एक लड़के ने किनारे पर कई तारामछलियाँ देखीं। उसने उन्हें एक-एक करके समुद्र में वापस फेंका। एक आदमी ने कहा, 'तुम सबको नहीं बचा सकते।' लड़के ने कहा, 'मैंने यह एक बचा लिया।'\n\n सीख: हर छोटी मदद मायने रखती है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 23,
+    "title_en": "The Rainbow Fish (Adapted)",
+    "title_hi": "इंद्रधनुषी मछली (अनुकूलित)",
+    "content_en": "A fish had beautiful scales. He was proud. He did not share. He felt lonely. He shared his scales with others and found true happiness. \n\n Moral: Sharing brings joy.",
+    "content_hi": "एक मछली के सुंदर शल्क थे। उसे घमंड था। उसने बाँटा नहीं। वह अकेला महसूस करने लगा। उसने अपने शल्क दूसरों को बाँटे और सच्ची खुशी पाई।\n\n सीख: बाँटने से आनंद मिलता है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 24,
+    "title_en": "The Little Seed and the Sun",
+    "title_hi": "छोटा बीज और सूरज",
+    "content_en": "A tiny seed was sleeping under the ground. Sun shone, rain fell. The seed grew into a big plant. \n\n Moral: With love and care, we grow.",
+    "content_hi": "एक छोटा बीज जमीन के नीचे सो रहा था। सूरज चमका, बारिश हुई। बीज एक बड़ा पौधा बन गया।\n\n सीख: प्यार और देखभाल से हम बढ़ते हैं।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 25,
+    "title_en": "The Brave Little Duck",
+    "title_hi": "बहादुर छोटी बत्तख",
+    "content_en": "A little duck was scared of water. His mother taught him to swim. He fell into a pond. He swam bravely. \n\n Moral: Face your fears. They are not as big as they seem.",
+    "content_hi": "एक छोटी बत्तख पानी से डरती थी। उसकी माँ ने उसे तैरना सिखाया। वह एक तालाब में गिर गई। उसने बहादुरी से तैरा।\n\n सीख: अपने डर का सामना करो। वे उतने बड़े नहीं हैं जितने लगते हैं।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 26,
+    "title_en": "The Wise Owl",
+    "title_hi": "बुद्धिमान उल्लू",
+    "content_en": "Animals came to an owl with problems. The owl listened to all, then said, 'Think quietly. The answer is in you.'\n\n Moral: Think before you ask. We can solve many problems ourselves.",
+    "content_hi": "जानवर एक उल्लू के पास अपनी समस्याएँ लेकर आए। उल्लू ने सबको सुना और कहा, 'चुपचाप सोचो। उत्तर तुम्हारे अंदर है।'\n\n सीख: माँगने से पहले सोचो। हम कई समस्याएँ खुद ही सुलझा सकते हैं।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 27,
+    "title_en": "The Lazy Cat (Persian)",
+    "title_hi": "आलसी बिल्ली (फ़ारसी)",
+    "content_en": "A cat was very lazy. He just slept. The mice ate all the food. The cat had no food. He learned to work. \n\n Moral: Laziness brings trouble. Work is important.",
+    "content_hi": "एक बिल्ली बहुत आलसी थी। वह बस सोता रहता था। चूहों ने सारा खाना खा लिया। बिल्ली के पास खाना नहीं था। उसने काम करना सीखा।\n\n सीख: आलस मुसीबत लाता है। काम ज़रूरी है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 28,
+    "title_en": "The Duck and the Turtle (Indian)",
+    "title_hi": "बत्तख और कछुआ (भारतीय)",
+    "content_en": "A duck and a turtle were friends. The turtle wanted to see the sky. The duck held a stick in her beak. The turtle held the stick. They flew. The turtle saw the sky and smiled.\n\n Moral: Friendship is beautiful.",
+    "content_hi": "एक बत्तख और एक कछुआ दोस्त थे। कछुआ आसमान देखना चाहता था। बत्तख ने अपनी चोंच में एक डंडा पकड़ा। कछुए ने डंडा पकड़ा। वे उड़े। कछुए ने आसमान देखा और मुस्कुराया।\n\n सीख: दोस्ती सुंदर है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 29,
+    "title_en": "The Sparrow and the Elephant (Indian)",
+    "title_hi": "गौरैया और हाथी (भारतीय)",
+    "content_en": "A sparrow built a nest on a tree. A big elephant came and shook the tree. The nest fell. The sparrow asked other birds for help. They chased the elephant away. \n\n Moral: Unity is strength.",
+    "content_hi": "एक गौरैया ने पेड़ पर घोंसला बनाया। एक बड़ा हाथी आया और पेड़ को हिलाया। घोंसला गिर गया। गौरैया ने दूसरे पक्षियों से मदद माँगी। उन्होंने हाथी को भगा दिया।\n\n सीख: एकता में शक्ति है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
+  },
+  {
+    "id": 30,
+    "title_en": "The Sun and the Cloud (World)",
+    "title_hi": "सूरज और बादल (विश्व)",
+    "content_en": "The sun shone every day. A cloud covered the sun. It rained. The plants grew. The sun and the cloud worked together.\n\n Moral: Teamwork makes things better.",
+    "content_hi": "सूरज हर दिन चमकता था। एक बादल ने सूरज को ढक लिया। बारिश हुई। पौधे बढ़े। सूरज और बादल ने मिलकर काम किया।\n\n सीख: टीमवर्क से सब बेहतर होता है।",
+    "imageUrl": "assets/icons/commonstory.jpg"
   }
 ]

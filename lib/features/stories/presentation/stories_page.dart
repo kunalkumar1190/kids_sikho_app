@@ -87,34 +87,35 @@ class StoryCard extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SizedBox(
-                width: double.infinity,
-                height: 200,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(32),
+              if (story.imageUrl.isNotEmpty) ...[
+                SizedBox(
+                  width: double.infinity,
+                  height: 200,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(32),
+                    ),
+                    child: Image.asset(
+                      story.imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Center(
+                        child: Icon(Icons.image_not_supported,
+                            size: 50, color: Colors.grey),
+                      ),
+                    ),
                   ),
-                  child: story.imageUrl.startsWith('http')
-                      ? Image.network(
-                          story.imageUrl,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              const Center(
-                            child: Icon(Icons.image_not_supported,
-                                size: 50, color: Colors.grey),
-                          ),
-                        )
-                      : Image.asset(
-                          story.imageUrl,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              const Center(
-                            child: Icon(Icons.image_not_supported,
-                                size: 50, color: Colors.grey),
-                          ),
-                        ),
+                )
+              ] else ...[
+                Text(
+                  isEnglish ? story.titleEn : story.titleHi,
+                  style: AppTextStyle.nunito(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.indigo,
+                  ),
                 ),
-              ),
+              ],
               Expanded(
                 flex: 3,
                 child: Padding(

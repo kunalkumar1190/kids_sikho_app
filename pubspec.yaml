@@ -2,7 +2,7 @@ name: anganwadikids
 description: "A new Flutter project."
 publish_to: 'none' 
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=3.5.0 <4.0.0"
@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   flutter_bloc: ^9.1.1
   go_router: ^17.3.0
   # google_fonts: ^8.1.0
@@ -95,7 +94,11 @@ flutter:
 
 flutter_native_splash:
   color: "#fed503"
+  color_dark: "#fed503"
   image: "assets/icons/logo.png"
   android_12:
+    color: "#fed503"
+    color_dark: "#fed503"
     image: "assets/icons/logo.png"
     icon_background_color: "#fed503"
+    icon_background_color_dark: "#fed503"
