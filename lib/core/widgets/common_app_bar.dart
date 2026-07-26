@@ -6,19 +6,22 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final VoidCallback? onBackPressed;
   final Color? backgroundColor;
+  final bool? isBottomSpace;
 
-  const CommonAppBar({
-    super.key,
-    required this.title,
-    this.actions,
-    this.onBackPressed,
-    this.backgroundColor,
-  });
+  const CommonAppBar(
+      {super.key,
+      required this.title,
+      this.actions,
+      this.onBackPressed,
+      this.backgroundColor,
+      this.isBottomSpace = true});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 20.0), // Added bottom margin
+      margin: isBottomSpace!
+          ? const EdgeInsets.only(bottom: 20.0)
+          : EdgeInsets.zero, // Added bottom margin
       child: AppBar(
         toolbarHeight: 80, // Added spacing for top and bottom
 

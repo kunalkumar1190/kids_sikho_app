@@ -105,6 +105,7 @@ class _DrawingPageState extends State<DrawingPage>
           appBar: CommonAppBar(
             title: "Draw & Learn",
             backgroundColor: Colors.transparent,
+            isBottomSpace: false,
             actions: [
               IconButton(
                 icon: Icon(
@@ -115,7 +116,7 @@ class _DrawingPageState extends State<DrawingPage>
                 onPressed: _toggleLock,
                 style: IconButton.styleFrom(
                   backgroundColor:
-                      Colors.white.withOpacity(_isLockEnabled ? 0.3 : 0.2),
+                      Colors.pink.withOpacity(_isLockEnabled ? 0.8 : 0.8),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                 ),
@@ -147,11 +148,13 @@ class _DrawingPageState extends State<DrawingPage>
                 left: -60,
                 right: -60,
                 bottom: -100,
-                child: SafeArea(
-                  top: false,
-                  child: Image.asset(
-                    Assets.icons.bottomimage.path,
-                    fit: BoxFit.fitWidth,
+                child: IgnorePointer(
+                  child: SafeArea(
+                    top: false,
+                    child: Image.asset(
+                      Assets.icons.bottomimage.path,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
               ),
@@ -253,11 +256,12 @@ class _DrawingCanvasState extends State<DrawingCanvas>
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         // Canvas Area with animated border
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.symmetric(horizontal: 25),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 500),
               decoration: BoxDecoration(
