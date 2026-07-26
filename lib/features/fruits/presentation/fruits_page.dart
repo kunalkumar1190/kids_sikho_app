@@ -7,6 +7,7 @@ import '../../../core/services/audio_service.dart';
 import '../bloc/fruits_bloc.dart';
 import '../bloc/fruits_event.dart';
 import '../bloc/fruits_state.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class FruitsPage extends StatefulWidget {
   const FruitsPage({super.key});
@@ -35,20 +36,9 @@ class _FruitsPageState extends State<FruitsPage> {
       create: (context) => FruitsBloc()..add(LoadFruits()),
       child: Scaffold(
         backgroundColor: const Color(0xFFF7F9FC),
-        appBar: AppBar(
-          title: Text(
-            "Learn Fruits",
-            style: AppTextStyle.fredoka(
-              color: Colors.red,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.red),
+        appBar: CommonAppBar(
+          title: "Fruits",
+          backgroundColor: Colors.lightBlue,
         ),
         body: BlocBuilder<FruitsBloc, FruitsState>(
           builder: (context, state) {

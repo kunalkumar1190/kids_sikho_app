@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/services/audio_service.dart';
 import '../../../core/theme/app_theme.dart';
 // import '../../../core/widgets/language_toggle.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class MemoryMatchPage extends StatefulWidget {
   const MemoryMatchPage({super.key});
@@ -177,15 +178,8 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Memory Match",
-          style: AppTextStyle.nunito(
-            fontWeight: FontWeight.bold,
-            color: AppTheme.textPrimary,
-          ),
-        ),
-        iconTheme: const IconThemeData(color: AppTheme.textPrimary),
+      appBar: CommonAppBar(
+        title: "Memory Match",
       ),
       body: SafeArea(
         child: Padding(

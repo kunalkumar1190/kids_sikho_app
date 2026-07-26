@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:anganwadikids/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/services/audio_service.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class Balloon {
   final int id;
@@ -31,6 +32,9 @@ class _BalloonPopPageState extends State<BalloonPopPage> {
   Timer? _spawnTimer;
   int _score = 0;
   int _balloonIdCounter = 0;
+  Timer? _countdownTimer;
+  bool _isCountingDown = true;
+  int _countdown = 3;
   final Random _random = Random();
 
   final List<Color> _balloonColors = [
@@ -45,8 +49,21 @@ class _BalloonPopPageState extends State<BalloonPopPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _startGame();
+    _startCountdown();
+  }
+
+  void _startCountdown() {
+    _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) return;
+      setState(() {
+        if (_countdown > 0) {
+          _countdown--;
+        } else {
+          _isCountingDown = false;
+          _countdownTimer?.cancel();
+          _startGame();
+        }
+      });
     });
   }
 
@@ -98,6 +115,7 @@ class _BalloonPopPageState extends State<BalloonPopPage> {
 
   @override
   void dispose() {
+    _countdownTimer?.cancel();
     _gameLoopTimer?.cancel();
     _spawnTimer?.cancel();
     super.dispose();
@@ -107,17 +125,9 @@ class _BalloonPopPageState extends State<BalloonPopPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlue.shade50,
-      appBar: AppBar(
-        title: Text(
-          "Balloon Pop",
-          style: AppTextStyle.nunito(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+      appBar: CommonAppBar(
+        title: "Balloon Pop",
         backgroundColor: Colors.lightBlue,
-        elevation: 0,
-        centerTitle: true,
       ),
       body: Stack(
         children: [
@@ -133,6 +143,44 @@ class _BalloonPopPageState extends State<BalloonPopPage> {
               ),
             ),
           ),
+
+          // Background Text
+          Positioned(
+            top: 100,
+            left: 0,
+            right: 0,
+            child: Text(
+              "Tap to Pop!",
+              textAlign: TextAlign.center,
+              style: AppTextStyle.fredoka(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+                color: Colors.lightBlue.withOpacity(0.2),
+              ),
+            ),
+          ),
+
+          // Countdown Overlay
+          if (_isCountingDown)
+            Center(
+              child: Text(
+                _countdown > 0 ? _countdown.toString() : "Go!",
+                style: AppTextStyle.fredoka(
+                  fontSize: _countdown > 0 ? 120 : 100, // Make 'Go!' fit nicely
+                  fontWeight: FontWeight.bold,
+                  color: Colors.redAccent,
+                  shadows: const [
+                    Shadow(
+                      color: Colors.white,
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+              ).animate(key: ValueKey(_countdown)).scale(
+                    duration: 500.ms,
+                    curve: Curves.elasticOut,
+                  ),
+            ),
 
           // Score
           Positioned(

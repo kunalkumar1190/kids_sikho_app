@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/services/audio_service.dart';
 import '../../../core/theme/app_theme.dart';
 // import '../../../core/widgets/language_toggle.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class MatchTheFollowingPage extends StatefulWidget {
   const MatchTheFollowingPage({super.key});
@@ -320,18 +321,9 @@ class _MatchTheFollowingPageState extends State<MatchTheFollowingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(
-          "Match It!",
-          style: AppTextStyle.nunito(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
+      appBar: CommonAppBar(
+        title: "Match It!",
+        backgroundColor: Colors.lightBlue,
       ),
       body: Container(
         decoration: const BoxDecoration(

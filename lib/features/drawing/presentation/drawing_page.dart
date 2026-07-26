@@ -1,5 +1,5 @@
 import 'dart:ui' as ui;
-import 'dart:math';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +8,7 @@ import 'package:anganwadikids/core/theme/app_text_style.dart';
 import 'package:anganwadikids/core/widgets/question_lock_dialog.dart';
 import '../bloc/drawing_bloc.dart';
 import '../data/models/drawing_point.dart';
+import 'package:anganwadikids/gen/assets.gen.dart';
 
 // ============================================================================
 // MAIN DRAWING PAGE WITH KID-FRIENDLY ANIMATIONS & ATTRACTIVE UI
@@ -100,159 +101,61 @@ class _DrawingPageState extends State<DrawingPage>
           }
         },
         child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(70),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.pink.shade400,
-                    Colors.purple.shade300,
-                    Colors.blue.shade300,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+          extendBodyBehindAppBar: true,
+          appBar: CommonAppBar(
+            title: "Draw & Learn",
+            backgroundColor: Colors.transparent,
+            actions: [
+              IconButton(
+                icon: Icon(
+                  _isLockEnabled ? Icons.lock : Icons.lock_open,
+                  color: Colors.white,
+                  size: 30,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.pink.shade200.withOpacity(0.5),
-                    blurRadius: 20,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: SafeArea(
-                child: Stack(
-                  children: [
-                    // Floating stars background animation
-                    ...List.generate(8, (index) {
-                      return Positioned(
-                        top: 5 + index * 8.0,
-                        left: 20 + index * 45.0,
-                        child: TweenAnimationBuilder(
-                          duration: Duration(milliseconds: 1200 + index * 200),
-                          tween: Tween<double>(begin: 0.5, end: 1.0),
-                          builder: (_, double value, __) {
-                            return Opacity(
-                              opacity: value,
-                              child: Icon(
-                                Icons.star,
-                                color:
-                                    Colors.white.withOpacity(0.3 + value * 0.3),
-                                size: 12 + value * 6,
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    }),
-                    // Title with bounce
-                    Center(
-                      child: AnimatedBuilder(
-                        animation: _bounceAnimation,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: 1.0 + 0.03 * _bounceAnimation.value,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.brush,
-                                    color: Colors.white, size: 28),
-                                const SizedBox(width: 10),
-                                Text(
-                                  '🎨 Draw & Learn',
-                                  style: AppTextStyle.nunito(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        blurRadius: 10,
-                                        color: Colors.black.withOpacity(0.3),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                const Icon(Icons.brush,
-                                    color: Colors.white, size: 28),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    // Lock button
-                    Positioned(
-                      right: 8,
-                      top: 8,
-                      child: AnimatedScale(
-                        scale: _isLockEnabled ? 1.2 : 1.0,
-                        duration: const Duration(milliseconds: 300),
-                        child: IconButton(
-                          icon: Icon(
-                            _isLockEnabled ? Icons.lock : Icons.lock_open,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                          onPressed: _toggleLock,
-                          style: IconButton.styleFrom(
-                            backgroundColor: Colors.white
-                                .withOpacity(_isLockEnabled ? 0.3 : 0.2),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                          ),
-                        ),
-                      ),
-                    ),
-                    // Back button
-                    Positioned(
-                      left: 8,
-                      top: 8,
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back_ios,
-                            color: Colors.white, size: 26),
-                        onPressed: () async {
-                          if (!_isLockEnabled) {
-                            Navigator.of(context).pop();
-                          } else {
-                            final unlocked =
-                                await showParentLockDialog(context);
-                            if (unlocked && context.mounted) {
-                              setState(() => _isLockEnabled = false);
-                              SystemChrome.setEnabledSystemUIMode(
-                                  SystemUiMode.manual,
-                                  overlays: SystemUiOverlay.values);
-                              Navigator.of(context).pop();
-                            }
-                          }
-                        },
-                        style: IconButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(0.2),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                        ),
-                      ),
-                    ),
-                  ],
+                onPressed: _toggleLock,
+                style: IconButton.styleFrom(
+                  backgroundColor:
+                      Colors.white.withOpacity(_isLockEnabled ? 0.3 : 0.2),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
                 ),
-              ),
-            ),
+              )
+            ],
           ),
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.pink.shade50,
-                  Colors.purple.shade50,
-                  Colors.blue.shade50,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+          body: Stack(
+            children: [
+              // Background Image
+              Positioned.fill(
+                child: Image.asset(
+                  Assets.icons.backgroundImage.path,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            child: const DrawingCanvas(),
+
+              // Foreground Content
+              SafeArea(
+                child: Column(
+                  children: const [
+                    Expanded(
+                      child: DrawingCanvas(),
+                    ),
+                  ],
+                ),
+              ),
+
+              Positioned(
+                left: -60,
+                right: -60,
+                bottom: -100,
+                child: SafeArea(
+                  top: false,
+                  child: Image.asset(
+                    Assets.icons.bottomimage.path,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -354,7 +257,7 @@ class _DrawingCanvasState extends State<DrawingCanvas>
         // Canvas Area with animated border
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(25),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 500),
               decoration: BoxDecoration(
@@ -418,16 +321,41 @@ class _DrawingCanvasState extends State<DrawingCanvas>
                             painter: DrawingPainter(points: state.points),
                             child: Container(),
                           ),
-                          // Animated sparkle overlay
-                          if (state.points.isNotEmpty)
+                          // Animated cursor overlay using image
+                          if (state.points.isNotEmpty &&
+                              state.points.whereType<DrawingPoint>().isNotEmpty)
                             AnimatedBuilder(
                               animation: _sparkleAnimation,
                               builder: (context, child) {
-                                return IgnorePointer(
-                                  child: CustomPaint(
-                                    painter: SparklePainter(
-                                      points: state.points,
-                                      animation: _sparkleAnimation.value,
+                                final lastPoints = state.points
+                                    .whereType<DrawingPoint>()
+                                    .toList();
+                                if (lastPoints.isEmpty)
+                                  return const SizedBox.shrink();
+                                final lastPoint = lastPoints.last;
+                                if (lastPoint.offset == null)
+                                  return const SizedBox.shrink();
+
+                                final offset = lastPoint.offset!;
+
+                                // Scale animation for pulsing effect
+                                final scale =
+                                    1.0 + _sparkleAnimation.value * 0.15;
+
+                                return Positioned(
+                                  // Adjust so the bottom-left or center aligns with the drawing point
+                                  // We'll align the bottom-left of a 50x50 image with the coordinate
+                                  left: offset.dx,
+                                  top: offset.dy - 50,
+                                  child: IgnorePointer(
+                                    child: Transform.scale(
+                                      scale: scale,
+                                      child: Image.asset(
+                                        Assets.icons.starpaint.path,
+                                        width: 50,
+                                        height: 50,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
                                 );
@@ -443,171 +371,110 @@ class _DrawingCanvasState extends State<DrawingCanvas>
           ),
         ),
 
-        // Toolbar with attractive animations
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+          margin: const EdgeInsets.fromLTRB(16, 10, 16, 18),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.pink.shade200,
-                Colors.purple.shade200,
-                Colors.blue.shade200,
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
-            borderRadius: BorderRadius.circular(25),
+            color: Colors.white.withOpacity(0.88),
+            borderRadius: BorderRadius.circular(34),
             boxShadow: [
               BoxShadow(
-                color: Colors.pink.shade300.withOpacity(0.3),
-                blurRadius: 15,
-                offset: const Offset(0, 5),
+                color: Colors.pink.withOpacity(.18),
+                blurRadius: 25,
+                offset: const Offset(0, 8),
               ),
             ],
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Color Picker Button with glow
-              _buildToolButton(
-                icon: Icons.color_lens,
-                color: Colors.blueAccent,
-                onPressed: () => _pickColor(context),
-                label: 'Color',
-                glowColor: Colors.blueAccent.withOpacity(0.3),
+              _toolItem(
+                image: Assets.icons.drawingColor.path,
+                onTap: () => _pickColor(context),
               ),
-
-              // Current Color Display with animated pulse
               BlocBuilder<DrawingBloc, DrawingState>(
                 builder: (context, state) {
-                  return TweenAnimationBuilder(
-                    duration: const Duration(milliseconds: 300),
-                    tween: ColorTween(
-                        begin: Colors.grey, end: state.selectedColor),
-                    builder: (context, color, child) {
-                      return Container(
-                        width: 44,
-                        height: 44,
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 250),
+                        height: 58,
+                        width: 58,
                         decoration: BoxDecoration(
-                          color: color,
+                          color: state.selectedColor,
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: Colors.white,
-                            width: 3,
+                            width: 4,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: (color ?? Colors.black).withOpacity(0.4),
-                              blurRadius: 12,
+                              color: state.selectedColor.withOpacity(.45),
+                              blurRadius: 15,
                               spreadRadius: 2,
                             ),
                           ],
                         ),
-                        child: const Icon(Icons.circle,
-                            color: Colors.white, size: 20),
-                      );
-                    },
+                        child: const Icon(
+                          Icons.brush_rounded,
+                          color: Colors.white,
+                          size: 28,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "Pen",
+                        style: AppTextStyle.nunito(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.blueGrey.shade800,
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
-
-              // Undo Button
-              _buildToolButton(
-                icon: Icons.undo,
-                color: Colors.orange,
-                onPressed: () {
+              _toolItem(
+                image: Assets.icons.backundo.path,
+                onTap: () {
                   context.read<DrawingBloc>().add(UndoDrawing());
                 },
-                label: 'Undo',
-                glowColor: Colors.orange.withOpacity(0.3),
               ),
-
-              // Clear Button
-              _buildToolButton(
-                icon: Icons.delete_sweep,
-                color: Colors.redAccent,
-                onPressed: () {
+              _toolItem(
+                image: Assets.icons.clean.path,
+                onTap: () {
                   context.read<DrawingBloc>().add(ClearDrawing());
                 },
-                label: 'Clear',
-                glowColor: Colors.redAccent.withOpacity(0.3),
               ),
             ],
           ),
         ),
-
-        // Fun message at bottom
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Text(
-            '🌈 Draw, Color, & Have Fun! 🎉',
-            style: AppTextStyle.nunito(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              color: Colors.purple.shade400,
-              shadows: [
-                Shadow(
-                  blurRadius: 8,
-                  color: Colors.purple.shade200.withOpacity(0.4),
-                ),
-              ],
-            ),
-          ),
+        SizedBox(
+          height: 60,
         ),
       ],
     );
   }
 
-  Widget _buildToolButton({
-    required IconData icon,
-    required Color color,
-    required VoidCallback onPressed,
-    required String label,
-    required Color glowColor,
+  Widget _toolItem({
+    required String image,
+    required VoidCallback onTap,
   }) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: RadialGradient(
-              colors: [
-                Colors.white.withOpacity(0.8),
-                Colors.white.withOpacity(0.2),
-              ],
-              radius: 0.7,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: glowColor,
-                blurRadius: 15,
-                spreadRadius: 2,
-              ),
-            ],
+    return InkWell(
+      borderRadius: BorderRadius.circular(30),
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            image,
+            fit: BoxFit.contain,
+            width: 70,
           ),
-          child: IconButton(
-            icon: Icon(icon, size: 32, color: color),
-            onPressed: onPressed,
-            style: IconButton.styleFrom(
-              backgroundColor: Colors.white.withOpacity(0.7),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              padding: const EdgeInsets.all(10),
-            ),
-          ),
-        ),
-        Text(
-          label,
-          style: AppTextStyle.nunito(
-            fontSize: 10,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -658,59 +525,35 @@ class SparklePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (points.isEmpty) return;
 
-    final random = Random(42);
     final lastPoints = points.whereType<DrawingPoint>().toList();
-    if (lastPoints.length < 3) return;
+    if (lastPoints.isEmpty) return;
 
-    // Draw sparkles near the last few points
-    for (int i = max(0, lastPoints.length - 15); i < lastPoints.length; i++) {
-      final point = lastPoints[i];
-      if (point.offset == null) continue;
+    final lastPoint = lastPoints.last;
+    if (lastPoint.offset == null) return;
 
-      final baseX = point.offset!.dx;
-      final baseY = point.offset!.dy;
+    final x = lastPoint.offset!.dx;
+    final y = lastPoint.offset!.dy;
 
-      // Each point gets 1-3 sparkles
-      final count = 1 + (random.nextInt(3));
-      for (int j = 0; j < count; j++) {
-        final angle = random.nextDouble() * 2 * pi;
-        final distance = 10 + animation * 20 + random.nextDouble() * 10;
-        final x = baseX + cos(angle) * distance * (0.5 + animation * 0.5);
-        final y = baseY + sin(angle) * distance * (0.5 + animation * 0.5);
+    // Draw a fun, pulsating star cursor that attracts kids
+    final textSpan = TextSpan(
+      text: '✏️',
+      style: TextStyle(
+        fontSize: 35 + animation * 8, // Pulsating effect
+        shadows: [],
+      ),
+    );
 
-        final size2 = 3 + animation * 6 + random.nextDouble() * 3;
-        final color = Colors.primaries[random.nextInt(Colors.primaries.length)]
-            .withOpacity(0.5 + animation * 0.3);
+    final textPainter = TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+    );
 
-        final paint = Paint()
-          ..color = color
-          ..style = PaintingStyle.fill;
+    textPainter.layout();
 
-        canvas.drawCircle(Offset(x, y), size2, paint);
-
-        // Draw star shape for some sparkles
-        if (j % 2 == 0) {
-          final starPaint = Paint()
-            ..color = Colors.yellow.withOpacity(0.4 + animation * 0.3)
-            ..style = PaintingStyle.fill;
-          final path = Path();
-          final starSize = size2 * 1.5;
-          for (int k = 0; k < 10; k++) {
-            final angle2 = k * 2 * pi / 10 - pi / 2;
-            final radius = k.isEven ? starSize : starSize * 0.4;
-            final px = x + cos(angle2) * radius;
-            final py = y + sin(angle2) * radius;
-            if (k == 0) {
-              path.moveTo(px, py);
-            } else {
-              path.lineTo(px, py);
-            }
-          }
-          path.close();
-          canvas.drawPath(path, starPaint);
-        }
-      }
-    }
+    // Center the star exactly on the drawing point
+    final offset =
+        Offset(x - textPainter.width / 2, y - textPainter.height / 2);
+    textPainter.paint(canvas, offset);
   }
 
   @override

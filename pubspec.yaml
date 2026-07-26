@@ -2,7 +2,7 @@ name: anganwadikids
 description: "A new Flutter project."
 publish_to: 'none' 
 
-version: 1.0.0+2
+version: 1.0.0+4
 
 environment:
   sdk: ">=3.5.0 <4.0.0"
@@ -19,7 +19,6 @@ dependencies:
   flutter_card_swiper: ^7.2.0
   flutter_colorpicker: ^1.1.0
   in_app_update: ^4.2.5
-  flutter_native_splash: ^2.4.7
   
 
 dev_dependencies:
@@ -34,7 +33,6 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.15.0
   flutter_gen_runner: ^5.14.1
-  rename: ^3.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

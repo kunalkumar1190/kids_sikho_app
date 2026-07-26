@@ -4,6 +4,7 @@ import 'package:anganwadikids/core/theme/app_text_style.dart';
 
 import '../../../app/routes/app_router.dart';
 import '../../home/widgets/glass_card.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class GamesPage extends StatelessWidget {
   const GamesPage({super.key});
@@ -12,20 +13,9 @@ class GamesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F9FC),
-      appBar: AppBar(
-        title: Text(
-          "Fun Games",
-          style: AppTextStyle.fredoka(
-            color: Colors.pinkAccent,
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.pinkAccent),
+      appBar: CommonAppBar(
+        title: "Fun Games",
+        backgroundColor: Colors.blueAccent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

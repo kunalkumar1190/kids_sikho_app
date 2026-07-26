@@ -6,6 +6,7 @@ import '../data/models/story_model.dart';
 import 'package:anganwadikids/core/theme/app_text_style.dart';
 import '../../../core/settings/settings_cubit.dart';
 import '../../../core/widgets/language_toggle.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class StoriesPage extends StatelessWidget {
   const StoriesPage({Key? key}) : super(key: key);
@@ -33,17 +34,9 @@ class _StoriesViewState extends State<StoriesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF3E0),
-      appBar: AppBar(
-        title: Text(
-          'Magical Stories',
-          style: AppTextStyle.nunito(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+      appBar: CommonAppBar(
+        title: "Magical Stories",
         backgroundColor: Colors.orangeAccent,
-        centerTitle: true,
-        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(

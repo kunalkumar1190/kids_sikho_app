@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   final List<HomeMenuItem> menus = [
     HomeMenuItem(
       title: "Alphabets",
-      assetImage: Assets.icons.alphabet,
+      assetImage: Assets.icons.alphabet.path,
       emoji: "🔤",
       lightColor: const Color(0xFFFFE0B2),
       mainColor: const Color(0xFFFFB74D),
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Numbers",
-      assetImage: Assets.icons.number,
+      assetImage: Assets.icons.number.path,
       emoji: "🔢",
       lightColor: const Color(0xFFBBDEFB),
       mainColor: const Color(0xFF64B5F6),
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Shapes",
-      assetImage: Assets.icons.star,
+      assetImage: Assets.icons.star.path,
       emoji: "⭐",
       lightColor: const Color(0xFFF0F4FF),
       mainColor: const Color(0xFF5D5FEF),
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Fruits",
-      assetImage: Assets.icons.fruits,
+      assetImage: Assets.icons.fruits.path,
       emoji: "🍎",
       lightColor: const Color(0xFFC8E6C9),
       mainColor: const Color(0xFF81C784),
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Animals",
-      assetImage: Assets.icons.animal,
+      assetImage: Assets.icons.animal.path,
       emoji: "🐘",
       lightColor: const Color(0xFFE1BEE7),
       mainColor: const Color(0xFFBA68C8),
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Stories",
-      assetImage: Assets.icons.commonstory,
+      assetImage: Assets.icons.commonstory.path,
       emoji: "📖",
       lightColor: const Color(0xFFFFCDD2),
       mainColor: const Color(0xFFE57373),
@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
     // ),
     HomeMenuItem(
       title: "Drawing",
-      assetImage: Assets.icons.drawing,
+      assetImage: Assets.icons.drawing.path,
       emoji: "🎨",
       lightColor: const Color(0xFFB2EBF2),
       mainColor: const Color(0xFF4DD0E1),
@@ -94,7 +94,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Games",
-      assetImage: Assets.icons.quiz,
+      assetImage: Assets.icons.quiz.path,
       emoji: "🏆",
       lightColor: const Color(0xFFF8BBD0),
       mainColor: const Color(0xFFF06292),
@@ -303,7 +303,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Image.asset(
-            Assets.icons.lion,
+            Assets.icons.lion.path,
             height: 100,
             width: 100,
             fit: BoxFit.cover,

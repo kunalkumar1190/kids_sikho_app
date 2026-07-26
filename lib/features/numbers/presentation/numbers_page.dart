@@ -7,6 +7,7 @@ import '../../../core/services/audio_service.dart';
 import '../bloc/numbers_bloc.dart';
 import '../bloc/numbers_event.dart';
 import '../bloc/numbers_state.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class NumbersPage extends StatefulWidget {
   const NumbersPage({super.key});
@@ -36,20 +37,9 @@ class _NumbersPageState extends State<NumbersPage> {
       create: (context) => NumbersBloc()..add(LoadNumbers()),
       child: Scaffold(
         backgroundColor: const Color(0xFFF7F9FC),
-        appBar: AppBar(
-          title: Text(
-            "Learn Numbers",
-            style: AppTextStyle.fredoka(
-              color: const Color(0xFF4ECDC4),
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Color(0xFF4ECDC4)),
+        appBar: CommonAppBar(
+          title: "Numbers",
+          backgroundColor: Colors.greenAccent,
         ),
         body: BlocBuilder<NumbersBloc, NumbersState>(
           builder: (context, state) {

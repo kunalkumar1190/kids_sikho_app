@@ -17,6 +17,7 @@ import '../utils/accuracy_calculator.dart';
 import '../controllers/drawing_controller.dart';
 import 'tracing_painter.dart';
 import 'hint_animation.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class TracingPage extends StatefulWidget {
   const TracingPage({super.key});
@@ -132,22 +133,9 @@ class _TracingPageState extends State<TracingPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF3F8FF), // Soft pastel blue background
-      appBar: AppBar(
-        title: Text(
-          "Homework",
-          style: AppTextStyle.nunito(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 24,
-          ),
-        ),
+      appBar: CommonAppBar(
+        title: "Homework",
         backgroundColor: Colors.blueAccent,
-        elevation: 0,
-        centerTitle: true,
-        actions: const [
-          LanguageToggleWidget(),
-          SizedBox(width: 16),
-        ],
       ),
       body: BlocConsumer<HomeworkBloc, HomeworkState>(
         listener: (context, state) async {

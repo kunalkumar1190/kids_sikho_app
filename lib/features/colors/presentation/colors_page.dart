@@ -7,6 +7,7 @@ import '../../../core/services/audio_service.dart';
 import '../bloc/colors_bloc.dart';
 import '../bloc/colors_event.dart';
 import '../bloc/colors_state.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class ColorsPage extends StatefulWidget {
   const ColorsPage({super.key});
@@ -35,20 +36,9 @@ class _ColorsPageState extends State<ColorsPage> {
       create: (context) => ColorsBloc()..add(LoadColors()),
       child: Scaffold(
         backgroundColor: const Color(0xFFF7F9FC),
-        appBar: AppBar(
-          title: Text(
-            "Learn Colors",
-            style: AppTextStyle.fredoka(
-              color: Colors.pink,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.pink),
+        appBar: CommonAppBar(
+          title: "Colors",
+          backgroundColor: Colors.lightBlue,
         ),
         body: BlocBuilder<ColorsBloc, ColorsState>(
           builder: (context, state) {

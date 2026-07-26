@@ -7,6 +7,7 @@ import '../../../core/services/audio_service.dart';
 import '../bloc/animals_bloc.dart';
 import '../bloc/animals_event.dart';
 import '../bloc/animals_state.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class AnimalsPage extends StatefulWidget {
   const AnimalsPage({super.key});
@@ -35,20 +36,9 @@ class _AnimalsPageState extends State<AnimalsPage> {
       create: (context) => AnimalsBloc()..add(LoadAnimals()),
       child: Scaffold(
         backgroundColor: const Color(0xFFF7F9FC),
-        appBar: AppBar(
-          title: Text(
-            "Learn Animals",
-            style: AppTextStyle.fredoka(
-              color: Colors.deepPurple,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.deepPurple),
+        appBar: CommonAppBar(
+          title: "Animals",
+          backgroundColor: Colors.lightBlue,
         ),
         body: BlocBuilder<AnimalsBloc, AnimalsState>(
           builder: (context, state) {

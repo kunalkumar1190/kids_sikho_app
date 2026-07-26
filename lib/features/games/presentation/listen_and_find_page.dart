@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/services/audio_service.dart';
 import '../../../core/settings/settings_cubit.dart';
 import '../../../core/widgets/language_toggle.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
+import '../data/listen_and_find_data.dart';
 
 class ListenAndFindPage extends StatefulWidget {
   const ListenAndFindPage({super.key});
@@ -16,28 +18,7 @@ class ListenAndFindPage extends StatefulWidget {
 }
 
 class _ListenAndFindPageState extends State<ListenAndFindPage> {
-  final List<Map<String, String>> _allItems = [
-    // Alphabets
-    {"symbol": "A", "name_en": "the letter A", "name_hi": "अक्षर ए"},
-    {"symbol": "B", "name_en": "the letter B", "name_hi": "अक्षर बी"},
-    {"symbol": "C", "name_en": "the letter C", "name_hi": "अक्षर सी"},
-    {"symbol": "D", "name_en": "the letter D", "name_hi": "अक्षर डी"},
-    // Numbers
-    {"symbol": "1", "name_en": "the number 1", "name_hi": "नंबर एक"},
-    {"symbol": "2", "name_en": "the number 2", "name_hi": "नंबर दो"},
-    {"symbol": "3", "name_en": "the number 3", "name_hi": "नंबर तीन"},
-    {"symbol": "4", "name_en": "the number 4", "name_hi": "नंबर चार"},
-    // Animals
-    {"symbol": "🐶", "name_en": "the dog", "name_hi": "कुत्ता"},
-    {"symbol": "🐱", "name_en": "the cat", "name_hi": "बिल्ली"},
-    {"symbol": "🐘", "name_en": "the elephant", "name_hi": "हाथी"},
-    {"symbol": "🐸", "name_en": "the frog", "name_hi": "मेंढक"},
-    // Shapes & Colors
-    {"symbol": "⭐", "name_en": "the star", "name_hi": "तारा"},
-    {"symbol": "🔴", "name_en": "the red circle", "name_hi": "लाल वृत्त"},
-    {"symbol": "🟦", "name_en": "the blue square", "name_hi": "नीला वर्ग"},
-    {"symbol": "🍎", "name_en": "the apple", "name_hi": "सेब"},
-  ];
+  final List<Map<String, String>> _allItems = listenAndFindItems;
 
   List<Map<String, String>> _currentOptions = [
     {"symbol": "A", "name_en": "the letter A", "name_hi": "अक्षर ए"},
@@ -173,12 +154,9 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
         _isSuccess = true;
         _score++;
       });
-      final targetName =
-          isHindi ? _targetItem['name_hi'] : _targetItem['name_en'];
-      final msg = isHindi
-          ? "बहुत बढ़िया! आपने $targetName खोज लिया!"
-          : "Great job! You found $targetName!";
-      AudioService().speak(msg, languageCode: isHindi ? 'hi-IN' : 'en-US');
+      final msg = isHindi ? "बहुत अच्छे!" : "Great job!";
+      await AudioService()
+          .speak(msg, languageCode: isHindi ? 'hi-IN' : 'en-US');
 
       await Future.delayed(const Duration(seconds: 3));
       if (mounted) {
@@ -191,9 +169,12 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
       });
       final tappedName =
           isHindi ? tappedItem['name_hi'] : tappedItem['name_en'];
+      final targetName =
+          isHindi ? _targetItem['name_hi'] : _targetItem['name_en'];
       final msg = isHindi
-          ? "उफ़! वह $tappedName है। फिर से प्रयास करें!"
-          : "Oops! That's $tappedName. Try again!";
+          ? "अरे, ये तो $tappedName है! $targetName कहाँ है?"
+          : "Oops, that's $tappedName! Where is $targetName?";
+
       AudioService().speak(msg, languageCode: isHindi ? 'hi-IN' : 'en-US');
 
       await Future.delayed(const Duration(milliseconds: 800));
@@ -202,7 +183,6 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
           _wrongIndex = null;
           _isProcessing = false;
         });
-        _askQuestion();
       }
     }
   }
@@ -211,17 +191,9 @@ class _ListenAndFindPageState extends State<ListenAndFindPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF3E0),
-      appBar: AppBar(
-        title: Text(
-          "Listen & Find",
-          style: AppTextStyle.nunito(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+      appBar: CommonAppBar(
+        title: "Listen & Find",
         backgroundColor: Colors.orangeAccent,
-        elevation: 0,
-        centerTitle: true,
         actions: [
           // IconButton(
           //   icon: const Icon(Icons.volume_up),

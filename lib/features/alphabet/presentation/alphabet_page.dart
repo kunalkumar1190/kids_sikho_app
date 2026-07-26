@@ -8,6 +8,7 @@ import '../../../core/services/audio_service.dart';
 import '../bloc/alphabet_bloc.dart';
 import '../bloc/alphabet_event.dart';
 import '../bloc/alphabet_state.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class AlphabetPage extends StatefulWidget {
   const AlphabetPage({super.key});
@@ -36,22 +37,16 @@ class _AlphabetPageState extends State<AlphabetPage> {
       create: (context) => AlphabetBloc()..add(LoadAlphabet()),
       child: Scaffold(
         backgroundColor: const Color(0xFFE8F5E9),
-        appBar: AppBar(
-          title: Text(
-            "Learn Alphabets",
-            style: AppTextStyle.fredoka(
-              color: Colors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-          ),
-          centerTitle: true,
+        appBar: CommonAppBar(
+          title: "Alphabets",
           backgroundColor: Colors.green,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.white),
         ),
-        body: BlocBuilder<AlphabetBloc, AlphabetState>(
+        body: BlocConsumer<AlphabetBloc, AlphabetState>(
+          listener: (context, state) {
+            if (state is AlphabetLoaded && state.alphabetData.isNotEmpty) {
+              _speakAlphabet(state.alphabetData.first);
+            }
+          },
           builder: (context, state) {
             if (state is AlphabetLoading) {
               return const Center(

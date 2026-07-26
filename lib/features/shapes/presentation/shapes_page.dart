@@ -7,6 +7,7 @@ import '../../../core/services/audio_service.dart';
 import '../bloc/shapes_bloc.dart';
 import '../bloc/shapes_event.dart';
 import '../bloc/shapes_state.dart';
+import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 
 class ShapesPage extends StatefulWidget {
   const ShapesPage({super.key});
@@ -36,20 +37,9 @@ class _ShapesPageState extends State<ShapesPage> {
       create: (context) => ShapesBloc()..add(LoadShapes()),
       child: Scaffold(
         backgroundColor: const Color(0xFFF0F4FF),
-        appBar: AppBar(
-          title: Text(
-            "Learn Shapes",
-            style: AppTextStyle.fredoka(
-              color: const Color(0xFF5D5FEF),
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Color(0xFF5D5FEF)),
+        appBar: CommonAppBar(
+          title: "Shapes",
+          backgroundColor: Colors.lightBlue,
         ),
         body: BlocBuilder<ShapesBloc, ShapesState>(
           builder: (context, state) {
@@ -79,12 +69,16 @@ class _ShapesPageState extends State<ShapesPage> {
                   itemBuilder: (context, index) {
                     final item = shapes[index];
                     final colors = [
-                      Colors.amber.shade400,
-                      Colors.cyan.shade400,
-                      Colors.deepPurple.shade400,
-                      Colors.teal.shade400,
-                      Colors.redAccent.shade400,
-                      Colors.indigo.shade400,
+                      const Color(0xFFFFD54F), // Soft Yellow
+                      const Color(0xFF81D4FA), // Sky Blue
+                      const Color(0xFFA5D6A7), // Mint Green
+                      const Color(0xFFFFAB91), // Peach
+                      const Color(0xFFCE93D8), // Lavender
+                      const Color(0xFFFFCCBC), // Light Orange
+                      const Color(0xFFB39DDB), // Light Purple
+                      const Color(0xFF80CBC4), // Aqua
+                      const Color(0xFFF48FB1), // Pink
+                      const Color(0xFFC5E1A5), // Lime
                     ];
                     final color = colors[index % colors.length];
 
@@ -112,7 +106,11 @@ class _ShapesPageState extends State<ShapesPage> {
                               children: [
                                 Text(
                                   item.symbol,
-                                  style: const TextStyle(fontSize: 70),
+                                  style: AppTextStyle.nunito(
+                                    fontSize: 70,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
