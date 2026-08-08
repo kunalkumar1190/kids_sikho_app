@@ -374,7 +374,7 @@ class HomePage extends StatelessWidget {
                     child: Center(
                       child: item.assetImage != null
                           ? ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
+                              borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
                                 item.assetImage!,
                                 fit: BoxFit.contain,
