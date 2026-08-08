@@ -1,12 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:anganwadikids/core/theme/app_text_style.dart';
 import 'package:anganwadikids/app/routes/app_router.dart';
 import 'package:anganwadikids/features/home/widgets/glass_card.dart';
 import 'package:anganwadikids/gen/assets.gen.dart';
-import '../../../core/settings/settings_cubit.dart';
-import '../../../core/widgets/language_toggle.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -41,6 +39,7 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Colors",
+      assetImage: Assets.newautoimage.colorsIcon.path,
       emoji: "🎨",
       lightColor: const Color(0xFFC8E6C9),
       mainColor: const Color(0xFF81C784),
@@ -103,12 +102,23 @@ class HomePage extends StatelessWidget {
     ),
     HomeMenuItem(
       title: "Homework",
+      assetImage: Assets.newautoimage.homeworkIcon.path,
       emoji: "✍️",
       lightColor: const Color(0xFFE8F5E9),
       mainColor: const Color(0xFF81C784),
       textColor: const Color(0xFF2E7D32),
       path: Routes.homework,
     ),
+    if (kDebugMode)
+      HomeMenuItem(
+        title: "Videos",
+        assetImage: Assets.newautoimage.videoIcon.path,
+        emoji: "📺",
+        lightColor: const Color(0xFFFFF3E0),
+        mainColor: const Color(0xFFFFB74D),
+        textColor: const Color(0xFFF57C00),
+        path: Routes.videos,
+      ),
   ];
 
   @override
@@ -282,12 +292,14 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Hello Little Explorer! 👋",
-                  style: AppTextStyle.fredoka(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFF2C3E50),
+                FittedBox(
+                  child: Text(
+                    "Hello Little Explorer! 👋",
+                    style: AppTextStyle.fredoka(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF2C3E50),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -361,9 +373,12 @@ class HomePage extends StatelessWidget {
                     borderRadius: 20,
                     child: Center(
                       child: item.assetImage != null
-                          ? Image.asset(
-                              item.assetImage!,
-                              fit: BoxFit.contain,
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.asset(
+                                item.assetImage!,
+                                fit: BoxFit.contain,
+                              ),
                             )
                           : Text(
                               item.emoji ?? "✨",

@@ -20,6 +20,7 @@ import '../../features/games/presentation/match_the_following_page.dart';
 import '../../features/homework/presentation/tracing_page.dart';
 import '../../features/homework/bloc/homework_bloc.dart';
 import '../../features/homework/bloc/homework_event.dart';
+import '../../features/youtube_video_page/videos_list_page.dart';
 
 class Routes {
   static const String home = "/";
@@ -37,6 +38,7 @@ class Routes {
   static const String findIt = "/games/find_it";
   static const String matchFollowing = "/games/match";
   static const String homework = "/homework";
+  static const String videos = "/videos";
 }
 
 class AppRouter {
@@ -102,6 +104,10 @@ class AppRouter {
           create: (context) => HomeworkBloc()..add(LoadHomeworkEvent()),
           child: const TracingPage(),
         ),
+      ),
+      GoRoute(
+        path: Routes.videos,
+        builder: (context, state) => const VideosListPage(),
       ),
     ],
   );

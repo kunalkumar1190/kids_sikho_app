@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:anganwadikids/core/widgets/common_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +121,8 @@ class _DrawingPageState extends State<DrawingPage>
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                 ),
-              )
+              ),
+              SizedBox(width: 10),
             ],
           ),
           body: Stack(
@@ -144,20 +146,21 @@ class _DrawingPageState extends State<DrawingPage>
                 ),
               ),
 
-              Positioned(
-                left: -60,
-                right: -60,
-                bottom: -100,
-                child: IgnorePointer(
-                  child: SafeArea(
-                    top: false,
-                    child: Image.asset(
-                      Assets.icons.bottomimage.path,
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                ),
-              ),
+              // Positioned(
+              //   left: -60,
+              //   right: -60,
+              //   bottom: -100,
+              //   child: IgnorePointer(
+              //     child: SafeArea(
+              //       top: false,
+              //       child: Image.asset(
+              //         Assets.icons.bottomimage.path,
+              //         fit: BoxFit.fitWidth,
+              //         alignment: Alignment.bottomCenter,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -181,6 +184,7 @@ class _DrawingCanvasState extends State<DrawingCanvas>
     with SingleTickerProviderStateMixin {
   late AnimationController _sparkleController;
   late Animation<double> _sparkleAnimation;
+  bool _hasShownIntro = false;
 
   @override
   void initState() {
@@ -193,6 +197,96 @@ class _DrawingCanvasState extends State<DrawingCanvas>
       parent: _sparkleController,
       curve: Curves.elasticOut,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_hasShownIntro) {
+        _hasShownIntro = true;
+        _playIntroAnimation();
+      }
+    });
+  }
+
+  void _playIntroAnimation() async {
+    // Wait a brief moment before starting
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (!mounted) return;
+
+    final size = MediaQuery.of(context).size;
+    final centerX = size.width / 2;
+    final centerY = size.height / 2 - 40;
+    final radius = 90.0;
+
+    final bloc = context.read<DrawingBloc>();
+
+    final paint = Paint()
+      ..color = Colors.pinkAccent
+      ..strokeWidth = 10.0
+      ..strokeCap = StrokeCap.round
+      ..isAntiAlias = true;
+
+    // 1. Draw face outline (circle)
+    for (int i = 0; i <= 40; i++) {
+      if (!mounted) return;
+      double t = i / 40.0;
+      double angle = t * 2 * math.pi;
+      double x = centerX + radius * math.cos(angle);
+      double y = centerY + radius * math.sin(angle);
+
+      bloc.add(AddDrawingPoint(DrawingPoint(
+        offset: Offset(x, y),
+        paint: paint,
+      )));
+
+      await Future.delayed(const Duration(milliseconds: 30));
+    }
+    bloc.add(EndDrawingStroke());
+
+    await Future.delayed(const Duration(milliseconds: 200));
+    if (!mounted) return;
+
+    // 2. Add left eye
+    bloc.add(AddDrawingPoint(DrawingPoint(
+      offset: Offset(centerX - 35, centerY - 25),
+      paint: paint,
+    )));
+    bloc.add(EndDrawingStroke());
+
+    await Future.delayed(const Duration(milliseconds: 200));
+    if (!mounted) return;
+
+    // 3. Add right eye
+    bloc.add(AddDrawingPoint(DrawingPoint(
+      offset: Offset(centerX + 35, centerY - 25),
+      paint: paint,
+    )));
+    bloc.add(EndDrawingStroke());
+
+    await Future.delayed(const Duration(milliseconds: 200));
+    if (!mounted) return;
+
+    // 4. Draw smile (arc)
+    final smileRadius = 50.0;
+    for (int i = 0; i <= 20; i++) {
+      if (!mounted) return;
+      double t = i / 20.0;
+      // angle from pi/8 (22.5 deg) to 7pi/8 (157.5 deg)
+      double angle = (math.pi * 0.15) + (t * (math.pi * 0.7));
+      double x = centerX + smileRadius * math.cos(angle);
+      double y = centerY + 10 + smileRadius * math.sin(angle);
+
+      bloc.add(AddDrawingPoint(DrawingPoint(
+        offset: Offset(x, y),
+        paint: paint,
+      )));
+
+      await Future.delayed(const Duration(milliseconds: 30));
+    }
+    bloc.add(EndDrawingStroke());
+
+    await Future.delayed(const Duration(milliseconds: 1500));
+    if (mounted) {
+      bloc.add(ClearDrawing());
+    }
   }
 
   @override
@@ -255,211 +349,255 @@ class _DrawingCanvasState extends State<DrawingCanvas>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        // Canvas Area with animated border
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    Colors.white,
-                    Color(0xFFF8F0FF),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.pink.shade200.withOpacity(0.3),
-                    spreadRadius: 5,
-                    blurRadius: 20,
-                    offset: const Offset(0, 8),
-                  ),
-                  BoxShadow(
-                    color: Colors.purple.shade200.withOpacity(0.2),
-                    spreadRadius: 3,
-                    blurRadius: 15,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-                border: Border.all(
-                  color: Colors.pink.shade100.withOpacity(0.5),
-                  width: 3,
-                ),
+    final isLargeScreen = MediaQuery.of(context).size.width > 600;
+
+    final canvasArea = Expanded(
+      child: Padding(
+        padding: isLargeScreen
+            ? const EdgeInsets.fromLTRB(25, 25, 0, 25)
+            : const EdgeInsets.symmetric(horizontal: 25),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [
+                Colors.white,
+                Color(0xFFF8F0FF),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.pink.shade200.withOpacity(0.3),
+                spreadRadius: 5,
+                blurRadius: 20,
+                offset: const Offset(0, 8),
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: BlocBuilder<DrawingBloc, DrawingState>(
-                  builder: (context, state) {
-                    return GestureDetector(
-                      onPanUpdate: (details) {
-                        RenderBox renderBox =
-                            context.findRenderObject() as RenderBox;
-                        final localPosition =
-                            renderBox.globalToLocal(details.globalPosition);
-                        context.read<DrawingBloc>().add(
-                              AddDrawingPoint(
-                                DrawingPoint(
-                                  offset: localPosition,
-                                  paint: Paint()
-                                    ..color = state.selectedColor
-                                    ..strokeWidth = state.strokeWidth
-                                    ..strokeCap = StrokeCap.round
-                                    ..isAntiAlias = true,
+              BoxShadow(
+                color: Colors.purple.shade200.withOpacity(0.2),
+                spreadRadius: 3,
+                blurRadius: 15,
+                offset: const Offset(0, 4),
+              ),
+            ],
+            border: Border.all(
+              color: Colors.pink.shade100.withOpacity(0.5),
+              width: 3,
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: BlocBuilder<DrawingBloc, DrawingState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onPanUpdate: (details) {
+                    RenderBox renderBox =
+                        context.findRenderObject() as RenderBox;
+                    final localPosition =
+                        renderBox.globalToLocal(details.globalPosition);
+                    context.read<DrawingBloc>().add(
+                          AddDrawingPoint(
+                            DrawingPoint(
+                              offset: localPosition,
+                              paint: Paint()
+                                ..color = state.selectedColor
+                                ..strokeWidth = state.strokeWidth
+                                ..strokeCap = StrokeCap.round
+                                ..isAntiAlias = true,
+                            ),
+                          ),
+                        );
+                  },
+                  onPanEnd: (details) {
+                    context.read<DrawingBloc>().add(EndDrawingStroke());
+                  },
+                  child: Stack(
+                    children: [
+                      CustomPaint(
+                        painter: DrawingPainter(points: state.points),
+                        child: Container(),
+                      ),
+                      // Animated cursor overlay using image
+                      if (state.points.isNotEmpty &&
+                          state.points.whereType<DrawingPoint>().isNotEmpty)
+                        AnimatedBuilder(
+                          animation: _sparkleAnimation,
+                          builder: (context, child) {
+                            final lastPoints =
+                                state.points.whereType<DrawingPoint>().toList();
+                            if (lastPoints.isEmpty)
+                              return const SizedBox.shrink();
+                            final lastPoint = lastPoints.last;
+                            if (lastPoint.offset == null)
+                              return const SizedBox.shrink();
+
+                            final offset = lastPoint.offset!;
+
+                            // Scale animation for pulsing effect
+                            final scale = 1.0 + _sparkleAnimation.value * 0.15;
+
+                            return Positioned(
+                              // Adjust so the bottom-left or center aligns with the drawing point
+                              left: offset.dx,
+                              top: offset.dy - 50,
+                              child: IgnorePointer(
+                                child: Transform.scale(
+                                  scale: scale,
+                                  child: Image.asset(
+                                    Assets.icons.starpaint.path,
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                             );
-                      },
-                      onPanEnd: (details) {
-                        context.read<DrawingBloc>().add(EndDrawingStroke());
-                      },
-                      child: Stack(
-                        children: [
-                          CustomPaint(
-                            painter: DrawingPainter(points: state.points),
-                            child: Container(),
-                          ),
-                          // Animated cursor overlay using image
-                          if (state.points.isNotEmpty &&
-                              state.points.whereType<DrawingPoint>().isNotEmpty)
-                            AnimatedBuilder(
-                              animation: _sparkleAnimation,
-                              builder: (context, child) {
-                                final lastPoints = state.points
-                                    .whereType<DrawingPoint>()
-                                    .toList();
-                                if (lastPoints.isEmpty)
-                                  return const SizedBox.shrink();
-                                final lastPoint = lastPoints.last;
-                                if (lastPoint.offset == null)
-                                  return const SizedBox.shrink();
-
-                                final offset = lastPoint.offset!;
-
-                                // Scale animation for pulsing effect
-                                final scale =
-                                    1.0 + _sparkleAnimation.value * 0.15;
-
-                                return Positioned(
-                                  // Adjust so the bottom-left or center aligns with the drawing point
-                                  // We'll align the bottom-left of a 50x50 image with the coordinate
-                                  left: offset.dx,
-                                  top: offset.dy - 50,
-                                  child: IgnorePointer(
-                                    child: Transform.scale(
-                                      scale: scale,
-                                      child: Image.asset(
-                                        Assets.icons.starpaint.path,
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
+                          },
+                        ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
         ),
-
-        Container(
-          margin: const EdgeInsets.fromLTRB(16, 10, 16, 18),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.88),
-            borderRadius: BorderRadius.circular(34),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.pink.withOpacity(.18),
-                blurRadius: 25,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _toolItem(
-                image: Assets.icons.drawingColor.path,
-                onTap: () => _pickColor(context),
-              ),
-              BlocBuilder<DrawingBloc, DrawingState>(
-                builder: (context, state) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 250),
-                        height: 58,
-                        width: 58,
-                        decoration: BoxDecoration(
-                          color: state.selectedColor,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 4,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: state.selectedColor.withOpacity(.45),
-                              blurRadius: 15,
-                              spreadRadius: 2,
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Icons.brush_rounded,
-                          color: Colors.white,
-                          size: 28,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Pen",
-                        style: AppTextStyle.nunito(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.blueGrey.shade800,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-              _toolItem(
-                image: Assets.icons.backundo.path,
-                onTap: () {
-                  context.read<DrawingBloc>().add(UndoDrawing());
-                },
-              ),
-              _toolItem(
-                image: Assets.icons.clean.path,
-                onTap: () {
-                  context.read<DrawingBloc>().add(ClearDrawing());
-                },
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 60,
-        ),
-      ],
+      ),
     );
+
+    final toolsArea = _buildToolsArea(isLargeScreen);
+
+    if (isLargeScreen) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          canvasArea,
+          toolsArea,
+        ],
+      );
+    } else {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          canvasArea,
+          toolsArea,
+          const SizedBox(height: 60),
+        ],
+      );
+    }
+  }
+
+  Widget _buildToolsArea(bool isLargeScreen) {
+    final children = [
+      _toolItem(
+        image: Assets.icons.drawingColor.path,
+        onTap: () => _pickColor(context),
+      ),
+      BlocBuilder<DrawingBloc, DrawingState>(
+        builder: (context, state) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                height: 58,
+                width: 58,
+                decoration: BoxDecoration(
+                  color: state.selectedColor,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 4,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: state.selectedColor.withOpacity(.45),
+                      blurRadius: 15,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.brush_rounded,
+                  color: Colors.white,
+                  size: 28,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "Pen",
+                style: AppTextStyle.nunito(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.blueGrey.shade800,
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+      _toolItem(
+        image: Assets.icons.backundo.path,
+        onTap: () {
+          context.read<DrawingBloc>().add(UndoDrawing());
+        },
+      ),
+      _toolItem(
+        image: Assets.icons.clean.path,
+        onTap: () {
+          context.read<DrawingBloc>().add(ClearDrawing());
+        },
+      ),
+    ];
+
+    if (isLargeScreen) {
+      return Container(
+        margin: const EdgeInsets.fromLTRB(16, 25, 25, 25),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 24),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.82),
+          borderRadius: BorderRadius.circular(34),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.pink.withOpacity(.18),
+              blurRadius: 25,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: children,
+        ),
+      );
+    } else {
+      return Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(16, 10, 16, 18),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.75),
+              borderRadius: BorderRadius.circular(34),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.pink.withOpacity(.18),
+                  blurRadius: 25,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children,
+            ),
+          ),
+        ),
+      );
+    }
   }
 
   Widget _toolItem({

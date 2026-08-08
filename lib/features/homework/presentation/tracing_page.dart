@@ -1,3 +1,4 @@
+import 'package:anganwadikids/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:anganwadikids/core/theme/app_text_style.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -67,7 +68,7 @@ class _TracingPageState extends State<TracingPage>
   void _askQuestion(HomeworkItem item) {
     final isHindi = context.read<SettingsCubit>().state;
     final targetName = isHindi ? item.nameHi : item.nameEn;
-    final question = isHindi ? "$targetName लिखो" : "Trace $targetName";
+    final question = isHindi ? "$targetName लिखो" : "Write $targetName";
     AudioService().speak(question, languageCode: isHindi ? 'hi-IN' : 'en-US');
   }
 
@@ -132,348 +133,404 @@ class _TracingPageState extends State<TracingPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F8FF), // Soft pastel blue background
-      appBar: CommonAppBar(
+      extendBodyBehindAppBar: true,
+      appBar: const CommonAppBar(
         title: "Homework",
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.transparent,
+        isBottomSpace: false,
       ),
-      body: BlocConsumer<HomeworkBloc, HomeworkState>(
-        listener: (context, state) async {
-          if (state is HomeworkLoaded) {
-            _drawingController.clearMask();
-            _askQuestion(state.currentItem);
-          } else if (state is HomeworkSuccess) {
-            _confettiController.forward(from: 0);
-            AudioService().speak(state.result.message, languageCode: 'en-US');
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              Assets.newautoimage.homeworkBg.path,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SafeArea(
+            child: BlocConsumer<HomeworkBloc, HomeworkState>(
+              listener: (context, state) async {
+                if (state is HomeworkLoaded) {
+                  _drawingController.clearMask();
+                  _askQuestion(state.currentItem);
+                } else if (state is HomeworkSuccess) {
+                  _confettiController.forward(from: 0);
+                  AudioService()
+                      .speak(state.result.message, languageCode: 'en-US');
 
-            // Show Success Dialog
-            final homeworkBloc = context.read<HomeworkBloc>();
+                  // Show Success Dialog
+                  final homeworkBloc = context.read<HomeworkBloc>();
 
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (dialogContext) => AlertDialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _buildStars(state.result.stars),
-                    const SizedBox(height: 20),
-                    Text(
-                      "${state.result.percentage.toInt()}% Accuracy",
-                      style:
-                          AppTextStyle.nunito(fontSize: 20, color: Colors.grey),
-                    ),
-                    Text(
-                      state.result.message,
-                      style: AppTextStyle.fredoka(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: state.result.color,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 15),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(dialogContext);
-                        homeworkBloc.add(NextHomeworkEvent());
-                      },
-                      child: Text("Next!",
-                          style: AppTextStyle.nunito(
-                              fontSize: 20,
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (dialogContext) => AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _buildStars(state.result.stars),
+                          const SizedBox(height: 20),
+                          Text(
+                            "${state.result.percentage.toInt()}% Accuracy",
+                            style: AppTextStyle.nunito(
+                                fontSize: 20, color: Colors.grey),
+                          ),
+                          Text(
+                            state.result.message,
+                            style: AppTextStyle.fredoka(
+                              fontSize: 32,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                    )
-                  ],
-                ),
-              ),
-            );
-          } else if (state is HomeworkFail) {
-            HapticFeedback.heavyImpact();
-            AudioService().speak(state.result.message, languageCode: 'en-US');
-            _showMessage(state.result.message, Colors.redAccent);
-            _drawingController.clear();
-          }
-        },
-        builder: (context, state) {
-          if (state is HomeworkInitial || state is HomeworkLoading) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircularProgressIndicator(color: Colors.blueAccent),
-                  const SizedBox(height: 20),
-                  Text(
-                    "Loading Tracing Guide...",
-                    style: AppTextStyle.nunito(
-                        fontSize: 18, color: Colors.blueAccent),
-                  ),
-                ],
-              ),
-            );
-          } else if (state is HomeworkError) {
-            return Center(
-              child: ElevatedButton(
-                onPressed: () =>
-                    context.read<HomeworkBloc>().add(LoadHomeworkEvent()),
-                child: const Text("Retry"),
-              ),
-            );
-          }
-
-          HomeworkItem? currentItem;
-          bool isSuccess = false;
-
-          if (state is HomeworkLoaded) currentItem = state.currentItem;
-          if (state is HomeworkFail) currentItem = state.currentItem;
-          if (state is HomeworkSuccess) {
-            currentItem = state.currentItem;
-            isSuccess = true;
-          }
-
-          if (currentItem == null) return const SizedBox();
-
-          return Column(
-            children: [
-              // Header
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blue.shade100, Colors.blue.shade50],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.blue.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
-                    )
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.volume_up,
-                          color: Colors.blueAccent, size: 32),
-                      onPressed: () => _askQuestion(currentItem!),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      "Trace: ",
-                      style: AppTextStyle.nunito(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blue.shade800,
+                              color: state.result.color,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueAccent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 15),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(dialogContext);
+                              homeworkBloc.add(NextHomeworkEvent());
+                            },
+                            child: Text("Next!",
+                                style: AppTextStyle.nunito(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
+                          )
+                        ],
                       ),
                     ),
-                    Text(
-                      currentItem!.symbol,
-                      style: AppTextStyle.fredoka(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade900,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Canvas
-              Expanded(
-                child: LayoutBuilder(builder: (context, constraints) {
-                  final innerWidth =
-                      constraints.maxWidth - 48; // 24 margin on each side
-                  final innerHeight = constraints.maxHeight - 48;
-                  final innerSize = Size(innerWidth, innerHeight);
-
-                  // Generate mask lazily when size is known
-                  if (!_drawingController.isReady) {
-                    if (!_isPreparing) {
-                      _isPreparing = true;
-                      _prepareMask(currentItem!, innerSize);
-                    }
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  return Container(
-                    margin: const EdgeInsets.all(24),
-                    width: innerWidth,
-                    height: innerHeight,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(40),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue.shade100,
-                          spreadRadius: 5,
-                          blurRadius: 20,
-                          offset: const Offset(0, 10),
+                  );
+                } else if (state is HomeworkFail) {
+                  HapticFeedback.heavyImpact();
+                  AudioService()
+                      .speak(state.result.message, languageCode: 'en-US');
+                  _showMessage(state.result.message, Colors.redAccent);
+                  _drawingController.clear();
+                }
+              },
+              builder: (context, state) {
+                if (state is HomeworkInitial || state is HomeworkLoading) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CircularProgressIndicator(
+                            color: Colors.blueAccent),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Loading Tracing Guide...",
+                          style: AppTextStyle.nunito(
+                              fontSize: 18, color: Colors.blueAccent),
                         ),
                       ],
-                      border: Border.all(color: Colors.blue.shade200, width: 4),
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(36),
-                      child: Stack(
-                        alignment: Alignment.center,
+                  );
+                } else if (state is HomeworkError) {
+                  return Center(
+                    child: ElevatedButton(
+                      onPressed: () =>
+                          context.read<HomeworkBloc>().add(LoadHomeworkEvent()),
+                      child: const Text("Retry"),
+                    ),
+                  );
+                }
+
+                HomeworkItem? currentItem;
+                bool isSuccess = false;
+
+                if (state is HomeworkLoaded) currentItem = state.currentItem;
+                if (state is HomeworkFail) currentItem = state.currentItem;
+                if (state is HomeworkSuccess) {
+                  currentItem = state.currentItem;
+                  isSuccess = true;
+                }
+
+                if (currentItem == null) return const SizedBox();
+
+                return Column(
+                  children: [
+                    // Header
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.9),
+                        borderRadius: BorderRadius.circular(30),
+                        border:
+                            Border.all(color: Colors.amber.shade400, width: 4),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                            offset: Offset(0, 4),
+                          )
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // 1. Dotted Background
-                          CustomPaint(
-                            size: innerSize,
-                            painter: HintTextPainter(text: currentItem!.symbol),
-                          ),
-
-                          // 2. Hint Animation
-                          if (_showHint)
-                            HintAnimation(
-                              size: innerSize,
-                              onComplete: () {
-                                if (mounted) {
-                                  setState(() => _showHint = false);
-                                }
-                              },
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.orange,
+                              shape: BoxShape.circle,
                             ),
-
-                          // 3. User Drawing Interaction
-                          GestureDetector(
-                            onPanUpdate: (details) {
-                              if (isSuccess || _showHint) return;
-                              _drawingController
-                                  .addPoint(details.localPosition);
-                            },
-                            onPanEnd: (details) {
-                              if (isSuccess || _showHint) return;
-                              _drawingController.endStroke();
-                            },
-                            child: Container(
-                              width: innerWidth,
-                              height: innerHeight,
-                              color: Colors.transparent, // Capture gestures
-                              child: CustomPaint(
-                                size: innerSize,
-                                painter: TracingPainter(
-                                    strokes: _drawingController.strokes),
-                              ),
+                            child: IconButton(
+                              icon: const Icon(Icons.volume_up_rounded,
+                                  color: Colors.white, size: 28),
+                              onPressed: () => _askQuestion(currentItem!),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            "Write: ",
+                            style: AppTextStyle.nunito(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.deepPurple,
+                            ),
+                          ),
+                          Text(
+                            currentItem!.symbol,
+                            style: AppTextStyle.fredoka(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.pinkAccent,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  );
-                }),
-              ),
 
-              // Footer Controls
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(30)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 10,
-                        offset: Offset(0, -5),
-                      )
-                    ]),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Clear Button (Circular)
-                    ElevatedButton(
-                      onPressed: isSuccess
-                          ? null
-                          : () {
-                              _drawingController.clear();
-                              _showMessage("Board cleared! ✨", Colors.orange);
+                    // Canvas
+                    Expanded(
+                      child: LayoutBuilder(builder: (context, constraints) {
+                        final innerWidth =
+                            constraints.maxWidth - 48; // 24 margin on each side
+                        final innerHeight = constraints.maxHeight - 48;
+                        final innerSize = Size(innerWidth, innerHeight);
+
+                        // Generate mask lazily when size is known
+                        if (!_drawingController.isReady) {
+                          if (!_isPreparing) {
+                            _isPreparing = true;
+                            _prepareMask(currentItem!, innerSize);
+                          }
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+
+                        return Container(
+                          margin: const EdgeInsets.all(24),
+                          width: innerWidth,
+                          height: innerHeight,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(40),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.purple.withValues(alpha: 0.2),
+                                spreadRadius: 5,
+                                blurRadius: 20,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                            border: Border.all(
+                                color: Colors.purpleAccent.shade100, width: 8),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(36),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                // 1. Dotted Background
+                                CustomPaint(
+                                  size: innerSize,
+                                  painter: HintTextPainter(
+                                      text: currentItem!.symbol),
+                                ),
+
+                                // 2. Hint Animation
+                                if (_showHint)
+                                  HintAnimation(
+                                    size: innerSize,
+                                    onComplete: () {
+                                      if (mounted) {
+                                        setState(() => _showHint = false);
+                                      }
+                                    },
+                                  ),
+
+                                // 3. User Drawing Interaction
+                                GestureDetector(
+                                  onPanUpdate: (details) {
+                                    if (isSuccess || _showHint) return;
+                                    _drawingController
+                                        .addPoint(details.localPosition);
+                                  },
+                                  onPanEnd: (details) {
+                                    if (isSuccess || _showHint) return;
+                                    _drawingController.endStroke();
+                                  },
+                                  child: Container(
+                                    width: innerWidth,
+                                    height: innerHeight,
+                                    color:
+                                        Colors.transparent, // Capture gestures
+                                    child: CustomPaint(
+                                      size: innerSize,
+                                      painter: TracingPainter(
+                                          strokes: _drawingController.strokes),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+
+                    // Footer Controls
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20, horizontal: 24),
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(30)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10,
+                              offset: Offset(0, -5),
+                            )
+                          ]),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Clear Button (Circular)
+                          ElevatedButton(
+                            onPressed: isSuccess
+                                ? null
+                                : () {
+                                    _drawingController.clear();
+                                    _showMessage(
+                                        "Board cleared! ✨", Colors.orange);
+                                  },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.redAccent,
+                              foregroundColor: Colors.white,
+                              elevation: 6,
+                              padding: const EdgeInsets.all(18),
+                              shape: const CircleBorder(),
+                            ),
+                            child: const Icon(Icons.refresh_rounded, size: 30),
+                          ),
+                          const Spacer(),
+                          // Prev Button
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              context
+                                  .read<HomeworkBloc>()
+                                  .add(PreviousHomeworkEvent());
                             },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.all(16),
-                        shape: const CircleBorder(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueAccent,
+                              foregroundColor: Colors.white,
+                              elevation: 6,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 16),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25)),
+                            ),
+                            icon: const Icon(Icons.skip_previous_rounded,
+                                size: 26),
+                            label: const Text("Prev",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                          ),
+                          const SizedBox(width: 12),
+                          // Next/Skip Button (With Text)
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              // final unlocked = await showParentLockDialog(
+                              //     context,
+                              //     mode: LockMode.child);
+                              // if (unlocked == true && context.mounted) {
+                              context
+                                  .read<HomeworkBloc>()
+                                  .add(NextHomeworkEvent());
+                              // }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.orangeAccent,
+                              foregroundColor: Colors.white,
+                              elevation: 6,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 16),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25)),
+                            ),
+                            icon: const Icon(Icons.skip_next_rounded, size: 26),
+                            label: const Text("Next",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                          ),
+                          const SizedBox(width: 16),
+                          // Check Button (Expanded)
+                          // Expanded(
+                          //   child: AnimatedBuilder(
+                          //     animation: _pulseController,
+                          //     builder: (context, child) {
+                          //       return Transform.scale(
+                          //         scale: 1.0 + 0.03 * _pulseController.value,
+                          //         child: ElevatedButton.icon(
+                          //           onPressed: isSuccess
+                          //               ? null
+                          //               : () => _checkDrawing(currentItem!),
+                          //           icon: const Icon(Icons.check_circle, size: 28),
+                          //           label: Text(
+                          //             isSuccess ? "✅ Done!" : "Check!",
+                          //             style: AppTextStyle.nunito(
+                          //               fontWeight: FontWeight.bold,
+                          //               fontSize: 20,
+                          //             ),
+                          //           ),
+                          //           style: ElevatedButton.styleFrom(
+                          //             backgroundColor: isSuccess
+                          //                 ? Colors.green.shade400
+                          //                 : Colors.blueAccent,
+                          //             foregroundColor: Colors.white,
+                          //             padding:
+                          //                 const EdgeInsets.symmetric(vertical: 16),
+                          //             shape: RoundedRectangleBorder(
+                          //                 borderRadius: BorderRadius.circular(25)),
+                          //           ),
+                          //         ),
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
+                        ],
                       ),
-                      child: const Icon(Icons.refresh, size: 28),
                     ),
-                    const SizedBox(width: 12),
-                    // Next/Skip Button (With Text)
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        // final unlocked = await showParentLockDialog(
-                        //     context,
-                        //     mode: LockMode.child);
-                        // if (unlocked == true && context.mounted) {
-                        context.read<HomeworkBloc>().add(NextHomeworkEvent());
-                        // }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orangeAccent,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 14),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                      icon: const Icon(Icons.skip_next, size: 24),
-                      label: const Text("Next",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
-                    ),
-                    const SizedBox(width: 16),
-                    // Check Button (Expanded)
-                    // Expanded(
-                    //   child: AnimatedBuilder(
-                    //     animation: _pulseController,
-                    //     builder: (context, child) {
-                    //       return Transform.scale(
-                    //         scale: 1.0 + 0.03 * _pulseController.value,
-                    //         child: ElevatedButton.icon(
-                    //           onPressed: isSuccess
-                    //               ? null
-                    //               : () => _checkDrawing(currentItem!),
-                    //           icon: const Icon(Icons.check_circle, size: 28),
-                    //           label: Text(
-                    //             isSuccess ? "✅ Done!" : "Check!",
-                    //             style: AppTextStyle.nunito(
-                    //               fontWeight: FontWeight.bold,
-                    //               fontSize: 20,
-                    //             ),
-                    //           ),
-                    //           style: ElevatedButton.styleFrom(
-                    //             backgroundColor: isSuccess
-                    //                 ? Colors.green.shade400
-                    //                 : Colors.blueAccent,
-                    //             foregroundColor: Colors.white,
-                    //             padding:
-                    //                 const EdgeInsets.symmetric(vertical: 16),
-                    //             shape: RoundedRectangleBorder(
-                    //                 borderRadius: BorderRadius.circular(25)),
-                    //           ),
-                    //         ),
-                    //       );
-                    //     },
-                    //   ),
-                    // ),
                   ],
-                ),
-              ),
-            ],
-          );
-        },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

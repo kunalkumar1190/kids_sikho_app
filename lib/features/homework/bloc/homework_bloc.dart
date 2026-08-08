@@ -13,6 +13,7 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
     on<LoadHomeworkEvent>(_onLoadHomework);
     on<CheckHomeworkEvent>(_onCheckHomework);
     on<NextHomeworkEvent>(_onNextHomework);
+    on<PreviousHomeworkEvent>(_onPreviousHomework);
   }
 
   Future<void> _onLoadHomework(
@@ -42,6 +43,14 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
 
   void _onNextHomework(NextHomeworkEvent event, Emitter<HomeworkState> emit) {
     _currentIndex = (_currentIndex + 1) % _items.length;
+    emit(HomeworkLoaded(currentItem: _items[_currentIndex]));
+  }
+
+  void _onPreviousHomework(PreviousHomeworkEvent event, Emitter<HomeworkState> emit) {
+    _currentIndex = (_currentIndex - 1) % _items.length;
+    if (_currentIndex < 0) {
+      _currentIndex += _items.length;
+    }
     emit(HomeworkLoaded(currentItem: _items[_currentIndex]));
   }
 }

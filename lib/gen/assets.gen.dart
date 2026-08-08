@@ -72,6 +72,10 @@ class $AssetsIconsGen {
   AssetGenImage get backundo =>
       const AssetGenImage('assets/icons/backundo.png');
 
+  /// File path: assets/icons/bottomImage.png
+  AssetGenImage get bottomImage =>
+      const AssetGenImage('assets/icons/bottomImage.png');
+
   /// File path: assets/icons/clean.png
   AssetGenImage get clean => const AssetGenImage('assets/icons/clean.png');
 
@@ -114,10 +118,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/story.png
   AssetGenImage get story => const AssetGenImage('assets/icons/story.png');
 
-  /// File path: assets/icons/bottomImage.png
-  AssetGenImage get bottomimage =>
-      const AssetGenImage('assets/icons/bottomImage.png');
-
   /// List of all assets
   List<AssetGenImage> get values => [
         slice111,
@@ -127,6 +127,7 @@ class $AssetsIconsGen {
         audio,
         backgroundImage,
         backundo,
+        bottomImage,
         clean,
         commonstory,
         drawing,
@@ -139,8 +140,7 @@ class $AssetsIconsGen {
         robot,
         star,
         starpaint,
-        story,
-        bottomimage
+        story
       ];
 }
 
@@ -176,12 +176,45 @@ class $AssetsImagesGen {
       [foxGraps, greadyDog, lionRat, payashaCawa, rabitRace, woodcutter];
 }
 
+class $AssetsNewautoimageGen {
+  const $AssetsNewautoimageGen();
+
+  /// File path: assets/newautoimage/colors_icon.png
+  AssetGenImage get colorsIcon =>
+      const AssetGenImage('assets/newautoimage/colors_icon.png');
+
+  /// File path: assets/newautoimage/home_bg.png
+  AssetGenImage get homeBg =>
+      const AssetGenImage('assets/newautoimage/home_bg.png');
+
+  /// File path: assets/newautoimage/homework_bg.png
+  AssetGenImage get homeworkBg =>
+      const AssetGenImage('assets/newautoimage/homework_bg.png');
+
+  /// File path: assets/newautoimage/homework_icon.png
+  AssetGenImage get homeworkIcon =>
+      const AssetGenImage('assets/newautoimage/homework_icon.png');
+
+  /// File path: assets/newautoimage/video_bg.png
+  AssetGenImage get videoBg =>
+      const AssetGenImage('assets/newautoimage/video_bg.png');
+
+  /// File path: assets/newautoimage/video_icon.png
+  AssetGenImage get videoIcon =>
+      const AssetGenImage('assets/newautoimage/video_icon.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [colorsIcon, homeBg, homeworkBg, homeworkIcon, videoBg, videoIcon];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsDataGen data = $AssetsDataGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsNewautoimageGen newautoimage = $AssetsNewautoimageGen();
 }
 
 class AssetGenImage {

@@ -12,3 +12,5 @@ class CheckHomeworkEvent extends HomeworkEvent {
 }
 
 class NextHomeworkEvent extends HomeworkEvent {}
+
+class PreviousHomeworkEvent extends HomeworkEvent {}
